@@ -1,4 +1,5 @@
 from Algoritmos import *
+from FuncionesAuxiliares import *
 
 #2. Valide que los algoritmos funcionan correctamente. Chequee las siguientes secuencias:
 
@@ -8,8 +9,7 @@ def test1():
     for test_case in test_cases:         # Iteramos a través de los casos de prueba
         a = sumaSubMax1(test_case)       # Calculamos la suma máxima usando el Algoritmo 1
         b = sumaSubMax2(test_case)       # Calculamos la suma máxima usando el Algoritmo 2
-        print(test_case, a, b, a == b )  # Imprimimos el arreglo de entrada, las sumas calculadas y hacemos una comparación (operación constante) para comprobar si los resultados son iguales
-        
+        imprimirVector(test_case,a,b)
 
 #2.1 Así mismo realice una segunda comprobación con vectores generados de forma aleatoria (figura 1) comprobando que ambos algoritmos devuelven el mismo resultado
 
@@ -30,10 +30,14 @@ def test2():
     for arr in l:                           # Iteramos a través de los vectores aleatorios
         a = sumaSubMax1(arr)                # Calculamos la suma máxima usando el Algoritmo 1
         b = sumaSubMax2(arr)                # Calculamos la suma máxima usando el Algoritmo 2
-        print(arr, a, b, a == b)            # Imprimimos el vector aleatorio, las sumas calculadas y hacemos una comparación (operación constante) para comprobar si los resultados son iguales
+        imprimirVector(arr,a,b)            # Imprimimos el vector aleatorio, las sumas calculadas y hacemos una comparación (operación constante) para comprobar si los resultados son iguales
 
     
 #_______________________________________________________________________________________________________________________________________________________________________________________________________________________________
+print("")
 test1()
+print("")
 test2()
 #_______________________________________________________________________________________________________________________________________________________________________________________________________________________________
+#Hacer funcion axiliar para imprimir bien el vector
+#Hacer que en la misma ejecución saque varias veces las mismas tablas(para comprobar que están bien las mediciones)

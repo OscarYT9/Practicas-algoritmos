@@ -8,11 +8,13 @@ from Algoritmos import *
 # pseudoaleatorios en el rango [−n,...,n].
 
 import time
+tamanos_n = [500, 1000, 2000, 4000, 8000, 16000, 32000, 64000, 128000, 256000]
 
 def test3():
-    tamanos_n = [500, 1000, 2000, 4000, 8000]
+    print("Algoritmo 1")
+    print("Tamaño de n\tTiempo de ejecución (ns)")
 
-    for n in tamanos_n:
+    for n in tamanos_n[0:5]:
         vector = aleatorio(n)
         
         inicio = time.perf_counter_ns()
@@ -20,12 +22,12 @@ def test3():
         fin = time.perf_counter_ns()
         tiempo_ejecucion1 = fin - inicio
 
-        print(f"Tamaño de n: {n}")
-        print(f"Tiempo de ejecución Algoritmo 1: {tiempo_ejecucion1} nanosegundos")
-        print()
+        print(f"{n}\t\t\t{tiempo_ejecucion1}")
+    print()  # Imprimir una línea en blanco al final
 
 def test4():
-    tamanos_n = [500, 1000, 2000, 4000, 8000, 16000, 32000, 64000, 128000, 256000]
+    print("Algoritmo 2")
+    print("Tamaño de n\tTiempo de ejecución (ns)")
 
     for n in tamanos_n:
         vector = aleatorio(n)
@@ -35,9 +37,8 @@ def test4():
         fin = time.perf_counter_ns()
         tiempo_ejecucion2 = fin - inicio
 
-        print(f"Tamaño de n: {n}")
-        print(f"Tiempo de ejecución Algoritmo 2: {tiempo_ejecucion2} nanosegundos")
-        print()
+        print(f"{n}\t\t\t{tiempo_ejecucion2}")
+    print()  # Imprimir una línea en blanco al final
 
 # def ejecutar_pruebas(veces):
 #     for _ in range(veces):
@@ -53,9 +54,9 @@ test4()
 
 
 #-------------------------------------------------------------------------------------------------------------------------
-def analizar_complejidad(n_valores):
+def analizar_complejidad_sumaSubMax1(tamanos_n):
     print(f"{'n':<10}{'t(n) (ns)':<15}{'t(n)/n^1.8':<15}{'t(n)/n^2.0':<15}{'t(n)/n^2.2':<15}")
-    for n in n_valores:
+    for n in tamanos_n[0:5]:
         vector = aleatorio(n)
         
         inicio = time.perf_counter_ns()
@@ -71,17 +72,28 @@ def analizar_complejidad(n_valores):
 
         print(f"{n:<10}{t_n:<15}{t_n_divided_1_8:<15.6f}{t_n_divided_2_0:<15.6f}{t_n_divided_2_2:<15.6f}")
 
-# Tamaños de n a probar
-n_valores = [500, 1000, 2000, 4000, 8000]
+
+def analizar_complejidad_sumaSubMax2(tamanos_n):
+    print(f"{'n':<10}{'t(n) (ns)':<15}{'t(n)/n^1.8':<15}{'t(n)/n^2.0':<15}{'t(n)/n^2.2':<15}")
+    for n in tamanos_n:
+        vector = aleatorio(n)
+        
+        inicio = time.perf_counter_ns()
+        sumaSubMax2(vector)
+        fin = time.perf_counter_ns()
+        tiempo_ejecucion = fin - inicio
+
+        t_n = tiempo_ejecucion
+
+        t_n_divided_1_8 = t_n / (n ** 0.8)
+        t_n_divided_2_0 = t_n / (n)
+        t_n_divided_2_2 = t_n / (n ** 1.2)
+
+        print(f"{n:<10}{t_n:<15}{t_n_divided_1_8:<15.6f}{t_n_divided_2_0:<15.6f}{t_n_divided_2_2:<15.6f}")
+
 
 # Llama a la función para analizar la complejidad
-analizar_complejidad(n_valores)
-
-
-
-
-
-
-
-
-
+print("SumaSubMax1")
+analizar_complejidad_sumaSubMax1(tamanos_n)
+print("SumaSubMax2")
+analizar_complejidad_sumaSubMax2(tamanos_n)
