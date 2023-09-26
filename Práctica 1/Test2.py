@@ -1,5 +1,6 @@
 from Tests import *
 from Algoritmos import *
+import time
 
 # 3. Determine los tiempos de ejecución con vectores aleatorios de tamaño n. Para el primer algoritmo
 # n será igual a 500,1000,2000,4000 y 8000; para el segundo algoritmo añada también los valores
@@ -7,7 +8,7 @@ from Algoritmos import *
 # Para generar los datos de prueba utilice el código de la figura 1 que genera vectores de números
 # pseudoaleatorios en el rango [−n,...,n].
 
-import time
+
 tamanos_n = [500, 1000, 2000, 4000, 8000, 16000, 32000, 64000, 128000, 256000]
 
 def test3():
@@ -24,6 +25,8 @@ def test3():
 
         print(f"{n}\t\t\t{tiempo_ejecucion1}")
     print()  # Imprimir una línea en blanco al final
+
+
 
 def test4():
     print("Algoritmo 2")
