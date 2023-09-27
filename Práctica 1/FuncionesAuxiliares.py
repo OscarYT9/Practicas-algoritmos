@@ -1,3 +1,5 @@
+import time
+
 def formatear_lista (lista, ancho):
     """
     Formatea una lista de números para que cada elemento ocupe un ancho específico y agrega corchetes alrededor de la lista.
@@ -31,3 +33,17 @@ def aleatorio(n):
     for i in v:
         v[i] = random.randint(-n, n)
     return v
+
+
+def calcular_tiempo_promedio(algoritmo_func, vector, repeticiones):
+
+    tiempos = []
+
+    for _ in range(repeticiones):
+        
+        inicio = time.perf_counter_ns()
+        algoritmo_func(vector)
+        fin = time.perf_counter_ns()
+        tiempos.append(fin - inicio)
+
+    return sum(tiempos) / repeticiones

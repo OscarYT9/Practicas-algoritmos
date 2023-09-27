@@ -1,5 +1,6 @@
 from Tests import *
 from Algoritmos import *
+from FuncionesAuxiliares import *
 import time
 
 # 3. Determine los tiempos de ejecución con vectores aleatorios de tamaño n. Para el primer algoritmo
@@ -11,21 +12,7 @@ import time
 
 tamanos_n = [500, 1000, 2000, 4000, 8000, 16000, 32000, 64000, 128000, 256000]
 umbral_confianza = 1000
-repeticiones_umbral = 10
-
-
-def calcular_tiempo_promedio(algoritmo_func, vector, repeticiones):
-
-    tiempos = []
-
-    for _ in range(repeticiones):
-        
-        inicio = time.perf_counter_ns()
-        algoritmo_func(vector)
-        fin = time.perf_counter_ns()
-        tiempos.append(fin - inicio)
-
-    return sum(tiempos) / repeticiones
+repeticiones_umbral = 5
 
 def test_algoritmos(algoritmo):
 
@@ -53,11 +40,13 @@ def test_algoritmos(algoritmo):
         fin = time.perf_counter_ns()
         tiempo_ejecucion = fin - inicio
 
-        if tiempo_ejecucion < umbral_confianza*1000:
-            tiempo_promedio = calcular_tiempo_promedio(sumaSubMax_func, vector, repeticiones_umbral)
-            print(f"{n}\t\t\t{tiempo_promedio} (promedio de {repeticiones_umbral} repeticiones) *")
+        if tiempo_ejecucion < umbral_confianza * 1000: #pasar de us a ns
+
+            tiempo_promedio = calcular_tiempo_promedio(sumaSubMax_func, vector, repeticiones_umbral) #Hacemos el tiempo promedio
+            print(f"{n}\t\t\t{tiempo_promedio:.4f} (promedio de {repeticiones_umbral} repeticiones) *")
+
         else:
-            print(f"{n}\t\t\t{tiempo_ejecucion}")
+            print(f"{n}\t\t\t{tiempo_ejecucion:.4f}")
 
     print()  # Imprimir una línea en blanco al final
 
