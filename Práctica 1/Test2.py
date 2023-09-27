@@ -1,4 +1,3 @@
-from Tests import *
 from Algoritmos import *
 from FuncionesAuxiliares import *
 import time
@@ -12,7 +11,7 @@ import time
 
 tamanos_n = [500, 1000, 2000, 4000, 8000, 16000, 32000, 64000, 128000, 256000]
 umbral_confianza = 1000
-repeticiones_umbral = 5
+repeticiones_umbral = 10
 
 def test_algoritmos(algoritmo):
 
@@ -78,12 +77,21 @@ def analizar_complejidad_sumaSubMax1(tamanos_n):
 
         t_n = tiempo_ejecucion
 
-        t_n_divided_1_8 = t_n / (n ** 1.8)
-        t_n_divided_2_0 = t_n / (n ** 2.0)
-        t_n_divided_2_2 = t_n / (n ** 2.2)
+        if t_n < umbral_confianza * 1000:
+            tiempo_promedio = calcular_tiempo_promedio(sumaSubMax1, vector, repeticiones_umbral)
+            t_n = tiempo_promedio
 
-        print(f"{n:<10}{t_n:<15}{t_n_divided_1_8:<15.6f}{t_n_divided_2_0:<15.6f}{t_n_divided_2_2:<15.6f}")
+            t_n_divided_1_8 = t_n / (n ** 1.8)
+            t_n_divided_2_0 = t_n / (n ** 2.0)
+            t_n_divided_2_2 = t_n / (n ** 2.2)
 
+            print(f"*{n:<10}{t_n:<15}{t_n_divided_1_8:<15.6f}{t_n_divided_2_0:<15.6f}{t_n_divided_2_2:<15.6f}")
+        else:
+            t_n_divided_1_8 = t_n / (n ** 1.8)
+            t_n_divided_2_0 = t_n / (n ** 2.0)
+            t_n_divided_2_2 = t_n / (n ** 2.2)
+
+            print(f"{n:<10}{t_n:<15}{t_n_divided_1_8:<15.6f}{t_n_divided_2_0:<15.6f}{t_n_divided_2_2:<15.6f}")
 
 def analizar_complejidad_sumaSubMax2(tamanos_n):
     print(f"{'n':<10}{'t(n) (ns)':<15}{'t(n)/n^1.8':<15}{'t(n)/n^2.0':<15}{'t(n)/n^2.2':<15}")
@@ -97,12 +105,21 @@ def analizar_complejidad_sumaSubMax2(tamanos_n):
 
         t_n = tiempo_ejecucion
 
-        t_n_divided_1_8 = t_n / (n ** 0.8)
-        t_n_divided_2_0 = t_n / (n)
-        t_n_divided_2_2 = t_n / (n ** 1.2)
+        if t_n < umbral_confianza * 1000:
+            tiempo_promedio = calcular_tiempo_promedio(sumaSubMax2, vector, repeticiones_umbral)
+            t_n = tiempo_promedio
 
-        print(f"{n:<10}{t_n:<15}{t_n_divided_1_8:<15.6f}{t_n_divided_2_0:<15.6f}{t_n_divided_2_2:<15.6f}")
+            t_n_divided_1_8 = t_n / (n ** 0.8)
+            t_n_divided_2_0 = t_n / (n)
+            t_n_divided_2_2 = t_n / (n ** 1.2)
 
+            print(f"*{n:<10}{t_n:<15}{t_n_divided_1_8:<15.6f}{t_n_divided_2_0:<15.6f}{t_n_divided_2_2:<15.6f}")
+        else:
+            t_n_divided_1_8 = t_n / (n ** 0.8)
+            t_n_divided_2_0 = t_n / (n)
+            t_n_divided_2_2 = t_n / (n ** 1.2)
+
+            print(f"{n:<10}{t_n:<15}{t_n_divided_1_8:<15.6f}{t_n_divided_2_0:<15.6f}{t_n_divided_2_2:<15.6f}")
 
 # Llama a la función para analizar la complejidad
 print("SumaSubMax1")

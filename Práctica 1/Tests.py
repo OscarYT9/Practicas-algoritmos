@@ -22,7 +22,14 @@ def test1(lista):
         result_algo2 = sumaSubMax2(vector)                    # Calculamos la suma máxima usando el Algoritmo 2.
         imprimirVector(vector, result_algo1, result_algo2)    # Llamamos a la función auxiliar que nos imprimirá cada vector.
 
-    
+# def test2():
+#     for i in range(0, 10):
+#         v = aleatorio(9)
+#         x = sumaSubMax1(v)
+#         y = sumaSubMax2(v)
+#         print('{0:0d}{1:0d} - {2}'.format(x, y, x==y))
+#     print()
+
 #_______________________________________________________________________________________________________________________________________________________________________________________________________________________________
 print("")
 test1(test_cases)
