@@ -10,40 +10,60 @@ import time
 
 
 tamanos_n = [500, 1000, 2000, 4000, 8000, 16000, 32000, 64000, 128000, 256000]
+umbral_confianza = 1000
+repeticiones_umbral = 10
 
+
+def calcular_tiempo_promedio(algoritmo_func, vector, repeticiones):
+
+    tiempos = []
+
+    for _ in range(repeticiones):
+        
+        inicio = time.perf_counter_ns()
+        algoritmo_func(vector)
+        fin = time.perf_counter_ns()
+        tiempos.append(fin - inicio)
+
+    return sum(tiempos) / repeticiones
 
 def test_algoritmos(algoritmo):
 
     if algoritmo == 1:
-        print("Algoritmo 1")
-        print("Tamaño de n\tTiempo de ejecución (ns)")
+        algoritmo_str = "Algoritmo 1"
+        tamanos = tamanos_n[:5]  # Limitar tamaños para Algoritmo 1
+        sumaSubMax_func = sumaSubMax1
 
-        for n in tamanos_n[0:5]:
-            vector = aleatorio(n)
-            
-            inicio = time.perf_counter_ns()
-            sumaSubMax1(vector)
-            fin = time.perf_counter_ns()
-            tiempo_ejecucion1 = fin - inicio
+    elif algoritmo == 2:
+        algoritmo_str = "Algoritmo 2"
+        tamanos = tamanos_n
+        sumaSubMax_func = sumaSubMax2
 
-            print(f"{n}\t\t\t{tiempo_ejecucion1}")
-        print()  # Imprimir una línea en blanco al final
+    else:
+        raise ValueError("El valor de algoritmo debe ser 1 o 2.")
 
+    print(algoritmo_str)
+    print("Tamaño de n\tTiempo de ejecución (ns)")
+
+    for n in tamanos:
+        vector = aleatorio(n)
         
-    if algoritmo ==2:
-        print("Algoritmo 2")
-        print("Tamaño de n\tTiempo de ejecución (ns)")
+        inicio = time.perf_counter_ns()
+        sumaSubMax_func(vector)
+        fin = time.perf_counter_ns()
+        tiempo_ejecucion = fin - inicio
 
-        for n in tamanos_n:
-            vector = aleatorio(n)
-            
-            inicio = time.perf_counter_ns()
-            sumaSubMax2(vector)
-            fin = time.perf_counter_ns()
-            tiempo_ejecucion2 = fin - inicio
+        if tiempo_ejecucion < umbral_confianza*1000:
+            tiempo_promedio = calcular_tiempo_promedio(sumaSubMax_func, vector, repeticiones_umbral)
+            print(f"{n}\t\t\t{tiempo_promedio} (promedio de {repeticiones_umbral} repeticiones) *")
+        else:
+            print(f"{n}\t\t\t{tiempo_ejecucion}")
 
-            print(f"{n}\t\t\t{tiempo_ejecucion2}")
-        print()  # Imprimir una línea en blanco al final
+    print()  # Imprimir una línea en blanco al final
+
+# Luego puedes llamar a la función test_algoritmos con algoritmo 1 o 2
+test_algoritmos(1)
+test_algoritmos(2)
 
 # def ejecutar_pruebas(veces):
 #     for _ in range(veces):
@@ -54,9 +74,6 @@ def test_algoritmos(algoritmo):
 #         print("Pruebas Algoritmo 2:")
 #         test2()
 #         print("-" * 20)
-
-test_algoritmos(1)
-test_algoritmos(2)
 
 
 #-------------------------------------------------------------------------------------------------------------------------
