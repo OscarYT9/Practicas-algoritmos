@@ -11,37 +11,39 @@ import time
 
 tamanos_n = [500, 1000, 2000, 4000, 8000, 16000, 32000, 64000, 128000, 256000]
 
-def test3():
-    print("Algoritmo 1")
-    print("Tamaño de n\tTiempo de ejecución (ns)")
 
-    for n in tamanos_n[0:5]:
-        vector = aleatorio(n)
+def test_algoritmos(algoritmo):
+
+    if algoritmo == 1:
+        print("Algoritmo 1")
+        print("Tamaño de n\tTiempo de ejecución (ns)")
+
+        for n in tamanos_n[0:5]:
+            vector = aleatorio(n)
+            
+            inicio = time.perf_counter_ns()
+            sumaSubMax1(vector)
+            fin = time.perf_counter_ns()
+            tiempo_ejecucion1 = fin - inicio
+
+            print(f"{n}\t\t\t{tiempo_ejecucion1}")
+        print()  # Imprimir una línea en blanco al final
+
         
-        inicio = time.perf_counter_ns()
-        sumaSubMax1(vector)
-        fin = time.perf_counter_ns()
-        tiempo_ejecucion1 = fin - inicio
+    if algoritmo ==2:
+        print("Algoritmo 2")
+        print("Tamaño de n\tTiempo de ejecución (ns)")
 
-        print(f"{n}\t\t\t{tiempo_ejecucion1}")
-    print()  # Imprimir una línea en blanco al final
+        for n in tamanos_n:
+            vector = aleatorio(n)
+            
+            inicio = time.perf_counter_ns()
+            sumaSubMax2(vector)
+            fin = time.perf_counter_ns()
+            tiempo_ejecucion2 = fin - inicio
 
-
-
-def test4():
-    print("Algoritmo 2")
-    print("Tamaño de n\tTiempo de ejecución (ns)")
-
-    for n in tamanos_n:
-        vector = aleatorio(n)
-        
-        inicio = time.perf_counter_ns()
-        sumaSubMax2(vector)
-        fin = time.perf_counter_ns()
-        tiempo_ejecucion2 = fin - inicio
-
-        print(f"{n}\t\t\t{tiempo_ejecucion2}")
-    print()  # Imprimir una línea en blanco al final
+            print(f"{n}\t\t\t{tiempo_ejecucion2}")
+        print()  # Imprimir una línea en blanco al final
 
 # def ejecutar_pruebas(veces):
 #     for _ in range(veces):
@@ -52,8 +54,9 @@ def test4():
 #         print("Pruebas Algoritmo 2:")
 #         test2()
 #         print("-" * 20)
-test3()
-test4()
+
+test_algoritmos(1)
+test_algoritmos(2)
 
 
 #-------------------------------------------------------------------------------------------------------------------------
