@@ -49,3 +49,10 @@ def calcular_tiempo_promedio(func, vector, repeticiones):
     for _ in range(repeticiones):
         tiempo_total += calcular_tiempo_ejecucion(func, vector)
     return tiempo_total / repeticiones
+
+
+def cotasAjustadas(n, tiempo, exp1, exp2, exp3):
+    t_n_divided_1_8 = tiempo / (n ** exp1)
+    t_n_divided_2_0 = tiempo / (n ** exp2)
+    cota_inferior = tiempo / (n ** exp3)
+    return f"*{n:<10}{tiempo:<15.3f}{t_n_divided_1_8:<15.6f}{t_n_divided_2_0:<15.6f}{cota_inferior:<15.6f}"
