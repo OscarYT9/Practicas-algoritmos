@@ -35,15 +35,17 @@ def aleatorio(n):
     return v
 
 
-def calcular_tiempo_promedio(algoritmo_func, vector, repeticiones):
+def calcular_tiempo_ejecucion(func, vector):
+    
+    inicio = time.perf_counter_ns()
+    func(vector)
+    fin = time.perf_counter_ns()
+    return fin - inicio
 
-    tiempos = []
 
+def calcular_tiempo_promedio(func, vector, repeticiones):
+
+    tiempo_total = 0
     for _ in range(repeticiones):
-        
-        inicio = time.perf_counter_ns()
-        algoritmo_func(vector)
-        fin = time.perf_counter_ns()
-        tiempos.append(fin - inicio)
-
-    return sum(tiempos) / repeticiones
+        tiempo_total += calcular_tiempo_ejecucion(func, vector)
+    return tiempo_total / repeticiones
