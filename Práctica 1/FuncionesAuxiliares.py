@@ -1,9 +1,10 @@
 def formatear_lista (lista, ancho):
     """
     Formatea una lista de números para que cada elemento ocupe un ancho específico y agrega corchetes alrededor de la lista.
+    (Está función es solo para imprimir de forma legible los datos, no afecta a la velocidad de los 2 algoritmos, ya que se ejecuta una vez finalizados)
     """
     # Inicializa una lista llamada 'lista_formateada' para almacenar los elementos formateados.
-    # ^ Utiliza un f-string para formatear cada número con el ancho especificado.
+    # ^ Utiliza un f-string para formatear cada número de la lista con el ancho especificado.
     lista_formateada = [f"{num:{ancho}}" for num in lista]
 
     # Concatena todos los elementos formateados con comas y los encierra entre corchetes.
@@ -19,6 +20,7 @@ def imprimirVector(test_case, a, b):
 
     # Imprime la 'lista_formateada', los resultados 'a' y 'b' y la comparación booleana entre 'a' y 'b'.
     print(lista_formateada, "\t", a, "\t", b, "\t", a == b)
+
 
 def aleatorio(n):
     """
