@@ -1,23 +1,31 @@
 # Importa las funciones desde los otros archivos
 from FuncionesTests import *
 
+def test(iteraciones):
+    # Ejecutar las funciones test1 y test2 con los casos de prueba y vectores aleatorios
+    print("\nTest 1 (Casos de Prueba):")
+    test1(test_cases)
+    
+    print("\nTest 2 (Vectores Aleatorios):")
+    test1(vectores_aleatorios)
+    
+    # Llamar a la función test_algoritmos con el algoritmo especificado
+    print("\nTest de Tiempo de Ejecución:")
+    test_tiempo_ejecucion(1)
+    print("")
+    test_tiempo_ejecucion(2)
+    
+    # Llamar a la función para analizar la complejidad con el algoritmo especificado
+    for i in range(iteraciones):
+        print(f"\nAnálisis de Complejidad: (Iteración nº {i+1})")
+        analizar_complejidad(1)
+        print("")
+        analizar_complejidad(2)
+
 # Llama a las funciones que deseas ejecutar
 if __name__ == "__main__":
-
-    print("")
-    test1(test_cases)
-    print("")
-    test1(vectores_aleatorios)
-
-
-
-    # Luego puedes llamar a la función test_algoritmos con algoritmo 1 o 2
-    test_algoritmos(1)
-    test_algoritmos(2)
-
-    # Llama a la función para analizar la complejidad
-    analizar_complejidad(1)
-    analizar_complejidad(2)
+    #Puedes elegir el número de iteraciones que deseas.
+    test(10)
 
 
 
