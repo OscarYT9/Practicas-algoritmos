@@ -106,6 +106,7 @@ def analizar_complejidad(algoritmo):
 
         # Imprimimos el nombre del algoritmo actual y las cabeceras de las columnas
         print(algoritmo_str)
+        print(f"{'Sobreestimada':>64}{'Ajustada':>12}{'Subestimada':>15}")
         print(f"{'n':>12}\t\t{'t(n) (ns)':>15}       {'t(n)/n^'+str(exp1):>15}{'t(n)/n^'+str(exp2):>15}{'t(n)/n^'+str(exp3):>15}")
 
         # Iteramos sobre diferentes tamaños de entrada
