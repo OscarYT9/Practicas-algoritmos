@@ -13,7 +13,7 @@ def formatear_lista (lista, ancho):
     return '[' + ', '.join(lista_formateada) + ']'
 
 
-def imprimirVector(test_case, a, b):
+def imprimir_vector(test_case, a, b):
     """
     Imprime una lista de números, dos resultados y una comparación booleana.
     """
@@ -55,7 +55,7 @@ def calcular_tiempo_promedio(func, vector, repeticiones):
     return tiempo_total / repeticiones
 
 
-def cotasAjustadas(n, tiempo, exp1, exp2, exp3):
+def cotas_ajustadas(n, tiempo, exp1, exp2, exp3):
      # Calcula las cotas subestimada, ajustada y sobrestimada en función de los parámetros dados
     cota_subestimada= tiempo / (n ** exp1)
     cota_ajustada = tiempo / (n ** exp2)

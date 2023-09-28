@@ -21,7 +21,7 @@ def test1(lista):
     for vector in lista:                                      # Iteramos en la lista a través de los vectores dentro de ella.
         result_algo1 = sumaSubMax1(vector)                    # Calculamos la suma máxima usando el Algoritmo 1.
         result_algo2 = sumaSubMax2(vector)                    # Calculamos la suma máxima usando el Algoritmo 2.
-        imprimirVector(vector, result_algo1, result_algo2)    # Llamamos a la función auxiliar que nos imprimirá cada vector y el resultado de la Suma de la Subsecuencia Máxima.
+        imprimir_vector(vector, result_algo1, result_algo2)    # Llamamos a la función auxiliar que nos imprimirá cada vector y el resultado de la Suma de la Subsecuencia Máxima.
 
 #Se podrían crear varias funciones para iterar las dos listas, pero es más legible si se crea una sola, ya que solo cambias la lista de entrada de la función
 #...
@@ -47,42 +47,7 @@ umbral_confianza = 1000 # El tiempo en us (microsegundos) en el cual no nos pode
 repeticiones_umbral = 10 # Número iteraciones una vez superado el umbral de tiempo
 
 #-------------------------------------------------------------------------------------------------------------------------
-def test_tiempo_ejecucion(algoritmo):
-
-    # Comprobamos el valor del parámetro algoritmo y configuramos las variables en consecuencia
-    if algoritmo == 1:
-        algoritmo_str = "***Algoritmo 1***"
-        tamanos = tamanos_n[:5]       # Limitar tamaños para Algoritmo 1
-        sumaSubMax_func = sumaSubMax1
-
-    elif algoritmo == 2:
-        algoritmo_str = "***Algoritmo 2***"
-        tamanos = tamanos_n
-        sumaSubMax_func = sumaSubMax2
-
-    else:
-        raise ValueError("El valor de algoritmo debe ser 1 o 2.")
-
-    # Imprimimos el nombre del algoritmo actual
-    print(algoritmo_str)
-    print(f"{'Tamaño de n':>12}             {'Tiempo de ejecución (ns)':>15}")
-
-    # Iteramos sobre diferentes tamaños de entrada
-    for n in tamanos:
-        vector = aleatorio(n)  #Creamos un vector de ese tamaño de entrada
-        tiempo_ejecucion = calcular_tiempo_ejecucion (sumaSubMax_func, vector)  # Calculamos el tiempo de ejecución del algoritmo para ese vector
-
-        if tiempo_ejecucion < umbral_confianza * 1000: # Comprobamos si el tiempo de ejecución está por debajo de un umbral de confianza (y pasamos el umbral de us a ns)
-
-            tiempo_promedio = calcular_tiempo_promedio(sumaSubMax_func, vector, repeticiones_umbral) # Calculamos el tiempo promedio para varias repeticiones
-            print(f"* {n:>10}\t\t{tiempo_promedio:>15.4f} (promedio de {repeticiones_umbral} repeticiones)") # Imprimimos el resultado con un asterisco para indicar el promedio
-
-        else:
-            print(f"  {n:>10}\t\t{tiempo_ejecucion:>15.4f}") # Imprimimos el tiempo de ejecución normal
-
-            
-#-------------------------------------------------------------------------------------------------------------------------
-def analizar_complejidad(algoritmo):
+def test_tiempo_complejidad(algoritmo,t):
         
         # Comprobamos el valor del parámetro algoritmo y configuramos las variables en consecuencia
         if algoritmo == 1:
@@ -106,8 +71,12 @@ def analizar_complejidad(algoritmo):
 
         # Imprimimos el nombre del algoritmo actual y las cabeceras de las columnas
         print(algoritmo_str)
-        print(f"{'Sobreestimada':>64}{'Ajustada':>12}{'Subestimada':>15}")
-        print(f"{'n':>12}\t\t{'t(n) (ns)':>15}       {'t(n)/n^'+str(exp1):>15}{'t(n)/n^'+str(exp2):>15}{'t(n)/n^'+str(exp3):>15}")
+        if t==1:
+            print(f"{'Tamaño de n':>12}             {'Tiempo de ejecución (ns)':>15}")
+
+        else:
+            print(f"{'Sobreestimada':>64}{'Ajustada':>12}{'Subestimada':>15}")
+            print(f"{'n':>12}\t\t{'t(n) (ns)':>15}       {'t(n)/n^'+str(exp1):>15}{'t(n)/n^'+str(exp2):>15}{'t(n)/n^'+str(exp3):>15}")
 
         # Iteramos sobre diferentes tamaños de entrada
         for n in tamanos:
@@ -115,9 +84,17 @@ def analizar_complejidad(algoritmo):
             tiempo_ejecucion = calcular_tiempo_ejecucion (sumaSubMax_func,vector) # Calculamos el tiempo de ejecución del algoritmo para ese vector
             
             if tiempo_ejecucion < umbral_confianza * 1000: # Comprobamos si el tiempo de ejecución está por debajo de un umbral de confianza (y pasamos el umbral de us a ns)
-          
                 tiempo_promedio = calcular_tiempo_promedio(sumaSubMax_func, vector, repeticiones_umbral) # Calculamos el tiempo promedio para varias repeticiones
-                print("*",cotasAjustadas(n, tiempo_promedio, exp1, exp2, exp3),f"(promedio de {repeticiones_umbral} repeticiones)") # Imprimimos el resultado con un asterisco para indicar el promedio
+                
+                if t ==1:
+                    print(f"* {n:>10}\t\t{tiempo_promedio:>15.4f} (promedio de {repeticiones_umbral} repeticiones)") # Imprimimos el resultado con un asterisco para indicar el promedio
+                
+                else:
+                    print("*",cotas_ajustadas(n, tiempo_promedio, exp1, exp2, exp3),f"(promedio de {repeticiones_umbral} repeticiones)") # Imprimimos el resultado con un asterisco para indicar el promedio
 
             else:
-                print(" ",cotasAjustadas(n, tiempo_ejecucion, exp1, exp2, exp3)) # Imprimimos el tiempo de ejecución normal
+                if t==1:
+                     print(f"  {n:>10}\t\t{tiempo_ejecucion:>15.4f}") # Imprimimos el tiempo de ejecución normal
+                else:
+                    print(" ",cotas_ajustadas(n, tiempo_ejecucion, exp1, exp2, exp3)) # Imprimimos el tiempo de ejecución normal
+

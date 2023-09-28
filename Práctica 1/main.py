@@ -11,16 +11,16 @@ def test(iteraciones):
     
     # Llamar a la función test_algoritmos con el algoritmo especificado
     print("\nTest de Tiempo de Ejecución:")
-    test_tiempo_ejecucion(1)
+    test_tiempo_complejidad(1,1)
     print("")
-    test_tiempo_ejecucion(2)
+    test_tiempo_complejidad(2,1)
     
     # Llamar a la función para analizar la complejidad con el algoritmo especificado
     for i in range(iteraciones):
         print(f"\nAnálisis de Complejidad: (Iteración nº {i+1})")
-        analizar_complejidad(1)
+        test_tiempo_complejidad(1,2)
         print("")
-        analizar_complejidad(2)
+        test_tiempo_complejidad(2,2)
 
 # Llama a las funciones que deseas ejecutar
 if __name__ == "__main__":
