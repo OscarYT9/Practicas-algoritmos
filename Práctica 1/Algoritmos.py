@@ -7,6 +7,20 @@
 
 #Algoritmo 1: O(n^2)
 def sumaSubMax1(v:list) -> int: # v es el arreglo de entrada
+    """
+     Parámetros
+     ----------
+     v: 
+        vector de tipo lista con n elementos al que aplicar la suma de la subsecuencia máxima
+
+     Qué hace la función?
+     ----------
+        recorre el vector v y va sumando los elementos hasta conseguir el mayor valor posible
+     Devuelve
+     -------
+     sumaMax
+        el máximo valor de tipo int de la suma de los elementos del vector
+    """
     n=len(v)                    # n es la longitud del arreglo
     sumaMax=0                   # Inicializa la suma máxima en 0
 
@@ -18,6 +32,7 @@ def sumaSubMax1(v:list) -> int: # v es el arreglo de entrada
 
             if estaSuma > sumaMax:  # Si la suma actual es mayor que la suma máxima registrada
                 sumaMax=estaSuma    # Actualiza la suma máxima con la suma actual
+    
     return sumaMax                  # Devuelve la máxima suma
             
 #Si no encuentra ninguna combinación que de un número mayor que 0, entonces el valor que devuelve siempre es 0. (Que es valor orginal de SumaMax, aún así debe ejecutar todos las iteraciones del algoritmo para comprobar todas las convinaciones y así comprobar que no existe ninguna convinación que de mayor que cero, por lo que la complejidad viene siendo la misma que en los otros caso en los que encuentra una solución al problema)
@@ -25,6 +40,21 @@ def sumaSubMax1(v:list) -> int: # v es el arreglo de entrada
 
 #Algoritmo 2: O(n)
 def sumaSubMax2(v:list) -> int: 
+    """
+     Parámetros
+     ----------
+     v: 
+        vector de tipo lista con n elementos al que aplicar la suma de la subsecuencia máxima
+
+     Qué hace la función?
+     ----------
+        recorre el vector v y va sumando los elementos hasta conseguir el mayor valor posible
+        
+     Devuelve
+     -------
+     sumaMax
+        el máximo valor de tipo int de la suma de los elementos del vector 
+    """
     n=len(v)                    # n es la longitud del arreglo
     estaSuma=0                  # Inicializa la suma actual en 0
     sumaMax=0                   # Inicializa la suma máxima en 0

@@ -1,31 +1,47 @@
 # Importa las funciones desde los otros archivos
 from FuncionesTests import *
 
+
 def test(iteraciones):
+    """
+     Parámetros
+     ----------
+     iteraciones: 
+        valor de tipo entero que determina las veces que se imprimiran las tablas
+
+     Qué hace la función?
+     ----------
+        estructura la comprobación de los algoritmos, ejecutandom paso por paso cada testeo
+        utiliza las funciones auxiliares test1(), test_tiempo_complejidad()
+     Devuelve
+     -------
+        las tablas del tiempo de ejcución sobre n y las cotas 
+    """
+    
     # Ejecutar las funciones test1 y test2 con los casos de prueba y vectores aleatorios
     print("\nTest 1 (Casos de Prueba):")
-    test1(test_cases)
+    test_resultados(test_cases)
     
     print("\nTest 2 (Vectores Aleatorios):")
-    test1(vectores_aleatorios)
+    test_resultados(vectores_aleatorios)
     
     # Llamar a la función test_algoritmos con el algoritmo especificado
-    print("\nTest de Tiempo de Ejecución:")
-    test_tiempo_complejidad(1,1)
+    print("\nTest 3 (Tiempo de Ejecución):")
+    test_tiempo_complejidad(1,"Si") #Test exclusivamente de tiempo de ejecución del algoritmo 1
     print("")
-    test_tiempo_complejidad(2,1)
+    test_tiempo_complejidad(2,"Si") #Test exclusivamente de tiempo de ejecución del algoritmo 2
     
     # Llamar a la función para analizar la complejidad con el algoritmo especificado
     for i in range(iteraciones):
-        print(f"\nAnálisis de Complejidad: (Iteración nº {i+1})")
-        test_tiempo_complejidad(1,2)
+        print(f"\nTest 4 (Análisis de Complejidad): (Iteración nº {i+1})")
+        test_tiempo_complejidad(1,"No") #Test exclusivamente de tiempo de ejecución del algoritmo 1
         print("")
-        test_tiempo_complejidad(2,2)
+        test_tiempo_complejidad(2,"No")
 
 # Llama a las funciones que deseas ejecutar
 if __name__ == "__main__":
     #Puedes elegir el número de iteraciones que deseas.
-    test(10)
+    test(20)
 
 
 
@@ -52,8 +68,7 @@ if __name__ == "__main__":
 
 
 #_______________________________________________________________________________________________________________________________________________________________________________________________________________________________
-#Hacer funcion axiliar para imprimir bien el vector
-#Hacer que en la misma ejecución saque varias veces las mismas tablas(para comprobar que están bien las mediciones)
+
 
 
 # Imprimimos el vector aleatorio, las sumas calculadas y hacemos una comparación (operación constante) para comprobar si los resultados son iguales
