@@ -114,7 +114,7 @@ def test_tiempo_complejidad(algoritmo, imprimir_solo_tiempo):
         print(f"{'Tamaño de n':>12}             {'Tiempo de ejecución (ns)':>15}")
 
     elif imprimir_solo_tiempo == "No":
-        print(f"{'Sobreestimada':>64}{'Ajustada':>12}{'Subestimada':>15}")
+        print(f"{'Subestimada':>64}{'Ajustada':>12}{'Sobreestimada':>15}")
         print(f"{'n':>12}\t\t{'t(n) (ns)':>15}{'t(n)/n^'+str(exp1):>22}{'t(n)/n^'+str(exp2):>15}{'t(n)/n^'+str(exp3):>15}")
 
     else:
