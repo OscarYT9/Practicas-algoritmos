@@ -1,6 +1,8 @@
 v=[1,3,-23,-4,2,5,7,556,45]
 n=len(v)
 
+#1. Implemente en PYTHON los algoritmos de ordenación por inserción y ordenación Shell con incrementos de Hibbard.
+
 def ins_sort(v):
     for i in range(1,n): #Buscar traducir el pseudocodigo a python, nos dice que el algoritmo empieza en la posicion 2 del algoritmo y en python tiene que ir de la posicion 1 a la n, ya que la primera posición pyhton es el 0
         x = v[i]
@@ -10,9 +12,6 @@ def ins_sort(v):
             j = j-1
         v[j+1] = x
     return v
-
-
-
 
 
 def shell_sort_aux(v:list, increments): #preguntar
