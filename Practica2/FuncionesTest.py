@@ -39,7 +39,7 @@ umbral_confianza = 1000                                          # El tiempo en 
 repeticiones_umbral = 10                                         # Número iteraciones una vez superado el umbral de tiempo
 
 #-------------------------------------------------------------------------------------------------------------------------
-def test_tiempo_complejidad(algoritmo, vector):
+def test_tiempo_complejidad(algoritmo, inicializar_func, vector):
     """
      Parámetros
      ----------
@@ -90,8 +90,8 @@ def test_tiempo_complejidad(algoritmo, vector):
         tiempo_ejecucion = calcular_tiempo_ejecucion (Ordenacion_func,vector)                               # Calculamos el tiempo de ejecución del algoritmo para ese vector
         
         if tiempo_ejecucion < umbral_confianza * 1000:                                                      # Comprobamos si el tiempo de ejecución está por debajo de un umbral de confianza (y pasamos el umbral de us a ns)
-            
-            tiempo_promedio = calcular_tiempo_promedio(Ordenacion_func, vector, repeticiones_umbral)        # Calculamos el tiempo promedio para varias repeticiones
+
+            tiempo_promedio = calcular_tiempo_promedio(Ordenacion_func, inicializar_func, vector, repeticiones_umbral)        # Calculamos el tiempo promedio para varias repeticiones
             print("*",cotas_ajustadas(n, tiempo_promedio, exp1, exp2, exp3),f"(promedio de {repeticiones_umbral} repeticiones)")    # Imprimimos el resultado con un asterisco para indicar el promedio
 
         else:

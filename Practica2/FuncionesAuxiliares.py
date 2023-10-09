@@ -15,8 +15,8 @@ def vector_ordenado_aleatorio(n,orden):
       return sorted(v, reverse=True)  # Ordena el vector de forma descendente
     else:
        ValueError
-
-def calcular_tiempo_ejecucion(func, inicializar_func, vector, repeticiones_umbral):
+#-------------------------------------------
+def calcular_tiempo_promedio(func, inicializar_func, vector, repeticiones_umbral):
     
    import time
    inicio = time.perf_counter_ns()     # Registra el tiempo de inicio antes de ejecutar la función del algoritmo
@@ -38,10 +38,18 @@ def calcular_tiempo_ejecucion(func, inicializar_func, vector, repeticiones_umbra
             inicializar_func(vector)
         tb = time.perf_counter_ns()
         t2 = tb - ta
-        
+
         t = (t1 - t2) / repeticiones_umbral
     
    return t
+
+def calcular_tiempo_ejecucion(func, vector):
+    
+    import time
+    inicio = time.perf_counter_ns()     # Registra el tiempo de inicio antes de ejecutar la función del algoritmo
+    func(vector)                        # Ejecuta la función del algoritmo para un vector dado
+    fin = time.perf_counter_ns()        # Registra el tiempo de finalización después de ejecutar la función
+    return fin - inicio                 # Calcula y devuelve el tiempo transcurrido en nanosegundos
 
 
 def cotas_ajustadas(n, tiempo, exp1, exp2, exp3):
