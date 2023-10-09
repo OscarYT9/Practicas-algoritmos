@@ -1,6 +1,7 @@
 #Funciones para comprobar los algoritmos
 from Algoritmos import *            #Importamos los algoritmos a probar
 from FuncionesAuxiliares import *   #Importamos las funciones auxiliares necesarias para la ejecución de las pruebas
+import math
 
 # 2. Valide el correcto funcionamiento de la implementación. La salida debería ser como sigue:
 
@@ -87,24 +88,18 @@ umbral_confianza = 1000                                          # El tiempo en 
 repeticiones_umbral = 10                                         # Número iteraciones una vez superado el umbral de tiempo
 
 #-------------------------------------------------------------------------------------------------------------------------
-def test_tiempo_complejidad(algoritmo, func_type):
+def test_tiempo_complejidad(algoritmo, func_type, exp1, exp2, exp3):
     
     # Comprobamos el valor del parámetro algoritmo y configuramos las variables en consecuencia
     if algoritmo == 1:
         algoritmo_str = "***ins_sort***"
         tamanos = tamanos_n  # Limitar tamaños para Algoritmo 1
         Ordenacion_func = ins_sort
-        exp1=1.8
-        exp2=2
-        exp3=2.2
 
     elif algoritmo == 2:
         algoritmo_str = "***shell_sort_hibbard***"
         tamanos = tamanos_n
         Ordenacion_func = shell_sort_hibbard
-        exp1=0.8
-        exp2=1
-        exp3=1.2
         
     else:
         raise ValueError("El valor de algoritmo debe ser 1 o 2.")
@@ -128,7 +123,7 @@ def test_tiempo_complejidad(algoritmo, func_type):
             vector = vector_ordenado_aleatorio(n,"ascendente")                                                                  #Creamos un vector de ese tamaño de entrada
         
         tiempo_ejecucion = calcular_tiempo_ejecucion (Ordenacion_func, vector)                               # Calculamos el tiempo de ejecución del algoritmo para ese vector
-        
+
         if tiempo_ejecucion < umbral_confianza * 1000:                                                      # Comprobamos si el tiempo de ejecución está por debajo de un umbral de confianza (y pasamos el umbral de us a ns)
 
             tiempo_promedio = calcular_tiempo_promedio(Ordenacion_func, vector, repeticiones_umbral, func_type)        # Calculamos el tiempo promedio para varias repeticiones
