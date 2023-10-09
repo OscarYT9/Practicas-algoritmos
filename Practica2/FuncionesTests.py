@@ -83,7 +83,7 @@ probar_algoritmos(10)
 # inicializaciones (a) y (b), se recomienda consultar el funcionamiento de la función numpy.arange.
 
 n=10
-tamanos_n = [128, 256, 512, 1024, 2048, 4096, 8192, 16384]       # Lista con los tamaños del vector aleatorio, es una progresión geométrica de razón 2, si se quisiese se podría automatizar su creación también, en este caso no lo hacemos ya que con esos valores deberia ser suficiente para comprobar la complejidad algorítmica
+tamanos_n = [500, 1000, 2000, 4000, 8000, 16000, 32000]       # Lista con los tamaños del vector aleatorio, es una progresión geométrica de razón 2, si se quisiese se podría automatizar su creación también, en este caso no lo hacemos ya que con esos valores deberia ser suficiente para comprobar la complejidad algorítmica
 umbral_confianza = 1000                                          # El tiempo en us (microsegundos) en el cual no nos podemos fiar de los valores obtenidos y habrá que realizar varias iteraciones y hacer el promedio de las mismas para asegurarnos de obtener valores correctos.
 repeticiones_umbral = 10                                         # Número iteraciones una vez superado el umbral de tiempo
 
