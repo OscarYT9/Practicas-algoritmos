@@ -15,21 +15,21 @@ def vector_ordenado_aleatorio(n,orden):
     
     elif orden =="descendente":
       v=aleatorio(n)
-      return sorted(v, reverse=True)  # Ordena el vector de forma descendente
+      return sorted(aleatorio(n), reverse=True)  # Ordena el vector de forma descendente
     
     elif orden =="aleatorio":
       v= aleatorio(n)
       return v
 
 #Funciones de inicialización
-def inicializar(vector, func_type,n):
-   if func_type == "alet":
-      vector= vector_ordenado_aleatorio(n,"aleatorio")
-   elif func_type == "desc":
-      vector= vector_ordenado_aleatorio(n,"descendente")
-   elif func_type == "asc":
-      vector = vector_ordenado_aleatorio(n,"ascendente")
-   return vector
+def inicializar(vector, func_type, n):
+    if func_type == "alet":
+        vector[:] = vector_ordenado_aleatorio(n, "aleatorio")
+    elif func_type == "desc":
+        vector[:] = vector_ordenado_aleatorio(n, "descendente")
+    elif func_type == "asc":
+        vector[:] = vector_ordenado_aleatorio(n, "ascendente")
+    return vector
 #Prefuntar sobre inicizalizar y preguntar si lo que hay que hacer es calcular el tiempo concreto, en ves de toda la función
 #-------------------------------------------
 def calcular_tiempo_promedio(Ordenacion_func, vector, repeticiones_umbral, func_type,n):
