@@ -1,39 +1,44 @@
+def aleatorio(n):
+     
+    import random
+    v=list(range(n))                    # Crear una lista de números en el rango [0, n-1]
+    for i in v:                         # Iterar sobre la lista y asignar números enteros aleatorios entre -n y n
+        v[i] = random.randint(-n, n)
+    return v    
+
 
 def vector_ordenado_aleatorio(n,orden):
 
     if orden =="ascendente":
-      v=list(range(n))
+      v=aleatorio(n)
       return sorted(v)  # Ordena el vector de forma ascendente
     
     elif orden =="descendente":
-      v=list(range(n))
+      v=aleatorio(n)
       return sorted(v, reverse=True)  # Ordena el vector de forma descendente
     
     elif orden =="aleatorio":
-         import random
-         v=list(range(n))                    # Crear una lista de números en el rango [0, n-1]
-         for i in v:                         # Iterar sobre la lista y asignar números enteros aleatorios entre -n y n
-            v[i] = random.randint(-n, n)
-         return v
+      v= aleatorio(n)
+      return v
 
 #Funciones de inicialización
-def inicializar(v, func_type):
-   import random
+def inicializar(vector, func_type,n):
    if func_type == "alet":
-     random.shuffle(v)
+      vector= vector_ordenado_aleatorio(n,"aleatorio")
    elif func_type == "desc":
-     sorted(v)
+      vector= vector_ordenado_aleatorio(n,"descendente")
    elif func_type == "asc":
-     sorted(v, reverse=True)
-
+      vector = vector_ordenado_aleatorio(n,"ascendente")
+   return vector
+#Prefuntar sobre inicizalizar y preguntar si lo que hay que hacer es calcular el tiempo concreto, en ves de toda la función
 #-------------------------------------------
-def calcular_tiempo_promedio(Ordenacion_func, vector, repeticiones_umbral, func_type):
+def calcular_tiempo_promedio(Ordenacion_func, vector, repeticiones_umbral, func_type,n):
     
    import time
    # Realizar repeticiones del algoritmo K veces
    ta = time.perf_counter_ns()
    for _ in range(repeticiones_umbral):
-      inicializar(vector, func_type)
+      inicializar(vector, func_type,n)
       Ordenacion_func(vector)
    tb = time.perf_counter_ns()
 
@@ -41,7 +46,7 @@ def calcular_tiempo_promedio(Ordenacion_func, vector, repeticiones_umbral, func_
 
    ta = time.perf_counter_ns()
    for _ in range(repeticiones_umbral):
-      inicializar(vector, func_type)
+      inicializar(vector, func_type,n)
    tb = time.perf_counter_ns()
    
    t2 = tb - ta

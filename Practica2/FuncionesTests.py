@@ -115,18 +115,15 @@ def test_tiempo_complejidad(algoritmo, func_type, exp1, exp2, exp3):
     
     # Iteramos sobre diferentes tamaños de entrada
     for n in tamanos:
-        if func_type == "alet":
-            vector= vector_ordenado_aleatorio(n,"aleatorio")
-        elif func_type == "desc":
-            vector= vector_ordenado_aleatorio(n,"descendente")
-        elif func_type == "asc":
-            vector = vector_ordenado_aleatorio(n,"ascendente")                                                                  #Creamos un vector de ese tamaño de entrada
+        
+        #Iniciamos los vectores
+        vector = inicializar(v, func_type,n)                                                               #Creamos un vector de ese tamaño de entrada
         
         tiempo_ejecucion = calcular_tiempo_ejecucion (Ordenacion_func, vector)                               # Calculamos el tiempo de ejecución del algoritmo para ese vector
 
         if tiempo_ejecucion < umbral_confianza * 1000:                                                      # Comprobamos si el tiempo de ejecución está por debajo de un umbral de confianza (y pasamos el umbral de us a ns)
 
-            tiempo_promedio = calcular_tiempo_promedio(Ordenacion_func, vector, repeticiones_umbral, func_type)        # Calculamos el tiempo promedio para varias repeticiones
+            tiempo_promedio = calcular_tiempo_promedio(Ordenacion_func, vector, repeticiones_umbral, func_type,n)        # Calculamos el tiempo promedio para varias repeticiones
             print("*",cotas_ajustadas(n, tiempo_promedio, exp1, exp2, exp3),f"(promedio de {repeticiones_umbral} repeticiones)")    # Imprimimos el resultado con un asterisco para indicar el promedio
 
         else:
