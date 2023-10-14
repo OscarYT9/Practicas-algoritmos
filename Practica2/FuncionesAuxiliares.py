@@ -1,12 +1,12 @@
 #Funciones que se usan dentro de otras funciones.
 
 def aleatorio(n):
-     
     import random
+    
     v=list(range(n))                    # Crear una lista de números en el rango [0, n-1]
     for i in v:                         # Iterar sobre la lista y asignar números enteros aleatorios entre -n y n
         v[i] = random.randint(-n, n)
-    return v    
+    return v                            # Devolver la lista con valores aleatorios
 
 #Funciones que crea los vectores de inicializar
 def vector_ordenado_aleatorio(n,orden):
@@ -55,8 +55,8 @@ def calcular_tiempo_promedio(Ordenacion_func, repeticiones_umbral, func_type,n):
    return t
 
 def calcular_tiempo_ejecucion(func, vector):
-    
     import time
+
     inicio = time.perf_counter_ns()     # Registra el tiempo de inicio antes de ejecutar la función del algoritmo
     func(vector)                        # Ejecuta la función del algoritmo para un vector dado
     fin = time.perf_counter_ns()        # Registra el tiempo de finalización después de ejecutar la función

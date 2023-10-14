@@ -27,27 +27,27 @@ def probar_algoritmos(n):
     print(vector_asc)
     print("Ordenado inicialmente?", ordenado(vector_asc))
     vector_asc=ins_sort(vector_asc)
-    print("Ordenado con el algoritmo de inserción?", ordenado(vector_asc))
+    print("Ordenado con el algoritmo de inserción?", ordenado(vector_asc), vector_asc)
     vector_asc=shell_sort_hibbard(vector_asc)
-    print("Ordenado con el algoritmo de Shell?", ordenado(vector_asc))
+    print("Ordenado con el algoritmo de Shell?", ordenado(vector_asc), vector_asc)
     # Llamar al algoritmo de ordenación aquí
 
     print("\nInicialización descendente")
     print(vector_desc)
     print("Ordenado inicialmente?", ordenado(vector_desc))
     vector_desc=ins_sort(vector_desc)
-    print("Ordenado con el algoritmo de inserción?", ordenado(vector_desc))
+    print("Ordenado con el algoritmo de inserción?", ordenado(vector_desc), vector_desc)
     vector_desc=shell_sort_hibbard(vector_desc)
-    print("Ordenado con el algoritmo de Shell?", ordenado(vector_desc))
+    print("Ordenado con el algoritmo de Shell?", ordenado(vector_desc), vector_desc)
     # Llamar al algoritmo de ordenación aquí
 
     print("\nInicialización aleatoria")
     print(vector_alet)
     print("Ordenado inicialmente?", ordenado(vector_alet))
     vector_alet=ins_sort(vector_alet)
-    print("Ordenado con el algoritmo de inserción?", ordenado(vector_alet))
+    print("Ordenado con el algoritmo de inserción?", ordenado(vector_alet), vector_alet)
     vector_alet=shell_sort_hibbard(vector_alet)
-    print("Ordenado con el algoritmo de Shell?", ordenado(vector_alet))
+    print("Ordenado con el algoritmo de Shell?", ordenado(vector_alet), vector_alet)
     # Llamar al algoritmo de ordenación aquí
 
 #_______________________________________________________________________________________________________________________________________________________________________________________________________________________________
