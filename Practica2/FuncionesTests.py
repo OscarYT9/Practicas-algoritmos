@@ -57,6 +57,8 @@ def probar_algoritmos(n):
 # en orden descendente, y (c) el vector está inicialmente desordenado (inicialización aleatoria). Para las
 # inicializaciones (a) y (b), se recomienda consultar el funcionamiento de la función numpy.arange.
 
+# 4. Calcule empíricamente las complejidades de los algoritmos para cada una de las diferentes situaciones iniciales del vector (i.e., 6 tablas).
+
 # Estamos definiendo estas variables como globales, ya que usamos los mismos valores para cada prueba pero podrían establecerse como parametros de entrada de la función en caso de querer probar con otras convinaciones
 
 tamanos_n = [128, 256, 512, 1024, 2048, 4096, 8192, 16384]       # Lista con los tamaños del vector aleatorio, es una progresión geométrica de razón 2, si se quisiese se podría automatizar su creación también, en este caso no lo hacemos ya que con esos valores deberia ser suficiente para comprobar la complejidad algorítmica
@@ -82,7 +84,7 @@ def test_tiempo_complejidad(algoritmo, func_type, exp1, exp2, exp3):
 
 
     # Imprimimos el nombre del algoritmo actual y las cabeceras de las columnas
-    print(algoritmo_str)
+    print(algoritmo_str, func_type)
 
     print(f"{'Subestimada':>64}{'Ajustada':>12}{'Sobreestimada':>15}")
     print(f"{'n':>12}\t\t{'t(n) (ns)':>15}{'t(n)/n^'+str(exp1):>22}{'t(n)/n^'+str(exp2):>15}{'t(n)/n^'+str(exp3):>15}")
