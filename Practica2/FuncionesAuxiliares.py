@@ -1,4 +1,4 @@
-
+#Funciones que se usan dentro de otras funciones.
 
 def aleatorio(n):
      
@@ -8,23 +8,20 @@ def aleatorio(n):
         v[i] = random.randint(-n, n)
     return v    
 
-
+#Funciones que crea los vectores de inicializar
 def vector_ordenado_aleatorio(n,orden):
 
     if orden =="ascendente":
       v = list(range(1,n+1))
-      return v
-    
     elif orden =="descendente":
       v = list(range(n, 0, -1))
-      return v
-    
     elif orden =="aleatorio":
       v= aleatorio(n)
-      return v
+    return v
 
 #Funciones de inicialización
-def inicializar(vector, func_type, n):
+def inicializar(func_type, n):
+
     if func_type == "alet":
         vector = vector_ordenado_aleatorio(n, "aleatorio")
     elif func_type == "desc":
@@ -32,27 +29,29 @@ def inicializar(vector, func_type, n):
     elif func_type == "asc":
         vector = vector_ordenado_aleatorio(n, "ascendente")
     return vector
-#Prefuntar sobre inicizalizar y preguntar si lo que hay que hacer es calcular el tiempo concreto, en ves de toda la función
+
 #-------------------------------------------
-def calcular_tiempo_promedio(Ordenacion_func, vector, repeticiones_umbral, func_type,n):
-    
+def calcular_tiempo_promedio(Ordenacion_func, repeticiones_umbral, func_type,n):
    import time
-   # Realizar repeticiones del algoritmo K veces
+
+   # Realizar repeticiones de inicialización + algoritmo K veces, es decir, repetir el cálculo del algoritmo K veces y para eso necesitas inicializar el vector K veces también, sino inicializas el vector, el algoritmo siempre iteraría las K veces sobre el vector ordenado
    ta = time.perf_counter_ns()
    for _ in range(repeticiones_umbral):
-      vector = inicializar(vector, func_type,n) #Ejecutas el algoritmo en esa iteración (n) un numero k de veces para cerciorarte de que el algoritmo es correcto, por eso tienes que pasarle a esta función todo lo necesario para volver a ejecutar esa misma ejecución n numero de veces, medir su tiempo y hacer la media del tiempo de las diferentes ejecuciones
+      vector = inicializar(func_type,n) #Ejecutas el algoritmo en esa iteración (n) un numero k de veces para cerciorarte de que el algoritmo es correcto, por eso tienes que pasarle a esta función todo lo necesario para volver a ejecutar esa misma ejecución n numero de veces, medir su tiempo y hacer la media del tiempo de las diferentes ejecuciones
       Ordenacion_func(vector)
    tb = time.perf_counter_ns()
 
-   t1 = tb - ta
+   t1 = tb - ta #Tiempo de inicialización + algoritmo
 
+   # Realizar repeticiones de inicialización
    ta = time.perf_counter_ns()
    for _ in range(repeticiones_umbral):
-      vector = inicializar(vector, func_type,n)
+      vector = inicializar(func_type,n)
    tb = time.perf_counter_ns()
    
-   t2 = tb - ta
-   t = (t1 - t2) / repeticiones_umbral
+   t2 = tb - ta #Tiempo de inicialización
+
+   t = (t1 - t2) / repeticiones_umbral #Restas el tiempo de inicialización para quedarte solo con el del algoritmo y después lo divides entre las K repeticiones para obtener el promedio del tiempo necesario para ejecutar el algoritmo
    return t
 
 def calcular_tiempo_ejecucion(func, vector):

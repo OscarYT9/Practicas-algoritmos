@@ -1,6 +1,4 @@
-v=[1,3,-23,-4,2,5,7,556,45,-56]
-#n=len(v)
-
+#Algoritmos a comprobar
 #1. Implemente en PYTHON los algoritmos de ordenación por inserción y ordenación Shell con incrementos de Hibbard.
 
 def ins_sort(v):
@@ -14,9 +12,9 @@ def ins_sort(v):
     return v
 
 
-def shell_sort_aux(v:list, increments): #preguntar
+def shell_sort_aux(v:list, increments): #PREGUNTAR
     for increment in increments:
-        for i in range(increment, len(v)):
+        for i in range(increment, len(v)): #n=len(v)
             tmp = v[i]
             j = i
             seguir = True
@@ -29,6 +27,7 @@ def shell_sort_aux(v:list, increments): #preguntar
             v[j] = tmp
     return v
 
+#Funciones ya dadas
 #---------------------------
 def hibbard_increments(n):
     increments = []
