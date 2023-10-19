@@ -8,18 +8,18 @@ def aleatorio(n): # Crea un vector de una longitud dada (n) con elementos aleato
         v[i] = random.randint(-n, n)
     return v                            # Devolver la lista con valores aleatorios
 
-#Funciones que crea los vectores de inicializar
+#Funcion que crea los vectores de inicializar
 def vector_ordenado_aleatorio(n,orden): # Crea un vector de números en función de la longitud del vector n y el tipo de orden 
 
-    if orden =="ascendente":            # Si el orden es ascendente, crea un vector de menor a mayor desde 1 hasta n+1
+    if orden =="ascendente":            # Si el orden es ascendente, crea un vector de menor a mayor desde 1 hasta n+1 . Se puede hacer con numpy: v = np.arange(1, n + 1)
       v = list(range(1,n+1))
-    elif orden =="descendente":         # Si el orden es descendente, el vector creado va de mayor a menor desde n hasta 1
+    elif orden =="descendente":         # Si el orden es descendente, el vector creado va de mayor a menor desde n hasta 1. Se puede hacer con numpy: v = np.arange(n, 0, -1)
       v = list(range(n, 0, -1))
     elif orden =="aleatorio":           # Si el orden es aleatorio, se crea un vector aleatorio no ordena
       v= aleatorio(n)
     return v                            # Devuelve el vector creado
 
-#Funciones de inicialización
+#Funcion de inicialización
 def inicializar(func_type, n):  # Inicializar un vector de números de longitud n según un tipo de orden específico
 
     if func_type == "alet":                                 # Si el orden es alet, generará un vector de longitud n con números en orden aleatorio 

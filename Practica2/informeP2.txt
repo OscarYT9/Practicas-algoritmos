@@ -3,7 +3,7 @@ oscar.vilela.rodriguez@udc.es; ainhoa.dediego.silva@udc.es
 
 INTRODUCCIÓN
 
-En esta segunda práctica analizamos y demostramos de manera empírica la fiabilidad, tiempo de ejecución, y complejidad de dos algoritmos de ordenación propuestos que realizan la ordenación de un vector, que se inizializa de tres formas posibles; ascedente (caso mejor), descendente (caso peor) y aleatorio (caso medio). Para ello, creamos un programa en Python, compuesto de varios archivos de código: 
+En esta segunda práctica analizamos y demostramos de manera empírica la fiabilidad, tiempo de ejecución, y complejidad de dos algoritmos de ordenación propuestos que realizan la ordenación ascedente de un vector, que se inizializa de tres formas posibles; ascedente, descendente y aleatorio. Para ello, creamos un programa en Python, compuesto de varios archivos de código: 
 
 Algoritmos.py 
 FuncionesTests.py 
@@ -70,8 +70,8 @@ Ordenado con el algoritmo de Shell? True [-8, -7, 1, 1, 1, 3, 7, 9, 10, 10]
 
 
 3º Para comprobar el tiempo de ejecución, creamos la función test_tiempo_complejidad(algoritmo, func_type, exp1, exp2, exp3) que calcula el tiempo y nos permite medir la complejidad de manera empírica gracias a las cotas.
-Utilizamos un vector de progresión gométrica 2 porque nos ayuda a visualizar hacia qué valor de tiempo tiende el algoritmo.
-Los asteriscos en las tablas de datos simbolizan que esos valores están por debajo del umbral de confianza, por lo que utilizamos el método del promedio, ya que el algoritmo no modifica los valores de entrada (en el caso de otros algoritmos quelos modificasen, habría que usar otro método).
+Utilizamos un vector de progresión geométrica 2 porque nos ayuda a visualizar hacia qué valor de tiempo tiende el algoritmo.
+Los asteriscos en las tablas de datos simbolizan que esos valores están por debajo del umbral de confianza, por lo que utilizamos el método del promedio para tener una medida más precisa.
 
 Test 2 (Análisis de Complejidad): (Iteración nº 5)
 ***ins_sort*** asc
@@ -87,7 +87,7 @@ Test 2 (Análisis de Complejidad): (Iteración nº 5)
        16384               1735500.0000            737.715089     105.926514      15.209702
 
 La complejidad de la función en orden ascendente es, aproximadamente y comprobado de forma empírica, de O(n). 
-En cuánto a las cotas, podemos observar de foma empírica como los valores de la subestimada tienden al infinito, los de la ajustada un rango entre 90 y 100 y los de la subestimada que tienden a 0.
+En cuánto a las cotas, podemos observar de foma empírica como los valores de la subestimada tienden al infinito, los de la ajustada tienden a constante en un rango de valores entre 90 y 100 y los de la sobreestimada que tienden a 0.
 
 ***ins_sort*** desc
                                                      Subestimada    Ajustada  Sobreestimada
@@ -102,7 +102,8 @@ En cuánto a las cotas, podemos observar de foma empírica como los valores de l
        16384            11744272700.0000            304.698444      43.750825       6.282063
 
 La complejidad de la función en orden descendente es, aproximadamente y comprobado de forma empírica, de O(n^2).
-En cuánto a las cotas, podemos observar de foma empírica como los valores de la subestimada tienden al infinito, los de la ajustada tienden hacia una constante de 44 y los de la subestimada que tienden a 0.
+En cuánto a las cotas, podemos observar de foma empírica como los valores de la subestimada tienden al infinito, los de la ajustada tienden hacia una constante de 44 y los de la sobreestimada que tienden a 0.
+
 ***ins_sort*** alet
                                                      Subestimada    Ajustada  Sobreestimada
            n                  t(n) (ns)            t(n)/n^1.8       t(n)/n^2     t(n)/n^2.2
@@ -116,7 +117,8 @@ En cuánto a las cotas, podemos observar de foma empírica como los valores de l
        16384            5969912900.0000            154.885979      22.239659       3.193332
 
 La complejidad de la función en orden aleatorio es, aproximadamente y comprobado de forma empírica, de O(n^2).
-En cuánto a las cotas, podemos observar de foma empírica como los valores de la subestimada tienden al infinito, los de la ajustada tienden hacia una constante de 22 y los de la subestimada que tienden a 0.      
+En cuánto a las cotas, podemos observar de foma empírica como los valores de la subestimada tienden al infinito, los de la ajustada tienden hacia una constante de 22 y los de la sobreestimada que tienden a 0.      
+
 ***shell_sort_hibbard*** asc
                                                      Subestimada    Ajustada  Sobreestimada
            n                  t(n) (ns)              t(n)/n^1     t(n)/n^1.2     t(n)/n^1.4
@@ -128,8 +130,9 @@ En cuánto a las cotas, podemos observar de foma empírica como los valores de l
         4096               5786200.0000           1412.646484     267.646460      50.709522
         8192              13197700.0000           1611.047363     265.723718      43.828068
        16384              28704500.0000           1751.983643     251.562591      36.121192
+
 La complejidad de la función en orden ascendente es, aproximadamente y comprobado de forma empírica, de O(n^1.2).
-En cuánto a las cotas, podemos observar de foma empírica como los valores de la subestimada tienden al infinito, los de la ajustada tienden hacia un rango de valores entre 250 y 270 y los de la subestimada que tienden a 0.      
+En cuánto a las cotas, podemos observar de foma empírica como los valores de la subestimada tienden al infinito, los de la ajustada tienden a constante en un rango de valores entre 250 y 270 y los de la sobreestimada que tienden a 0.      
 
 ***shell_sort_hibbard*** desc
                                                      Subestimada    Ajustada  Sobreestimada
@@ -144,7 +147,8 @@ En cuánto a las cotas, podemos observar de foma empírica como los valores de l
        16384              41646000.0000           2541.870117     364.980253      52.406527
 
 La complejidad de la función en orden descendente es, aproximadamente y comprobado de forma empírica, de O(n^1.2).
-En cuánto a las cotas, podemos observar de foma empírica como los valores de la subestimada tienden al infinito, los de la ajustada tienden hacia un rango de valores entre 360 y 410, y los de la subestimada que tienden a 0.      
+En cuánto a las cotas, podemos observar de foma empírica como los valores de la subestimada tienden al infinito, los de la ajustada tienden a constante en un rango de valores entre 360 y 410, y los de la sobreestimada que tienden a 0.      
+
 ***shell_sort_hibbard*** alet
                                                      Subestimada    Ajustada  Sobreestimada
            n                  t(n) (ns)              t(n)/n^1    t(n)/n^1.25     t(n)/n^1.4
@@ -158,13 +162,14 @@ En cuánto a las cotas, podemos observar de foma empírica como los valores de l
        16384              61974700.0000           3782.635498     334.340901      77.987773
 
 La complejidad de la función en orden aleatorio es, aproximadamente y comprobado de forma empírica, de O(n^1.25).
-En cuánto a las cotas, podemos observar de foma empírica como los valores de la subestimada tienden al infinito, los de la ajustada tienden hacia un rango de valores entre 310 y 370y los de la subestimada que tienden a 0.      
+En cuánto a las cotas, podemos observar de foma empírica como los valores de la subestimada tienden al infinito, los de la ajustada tienden a constante en un rango de valores entre 310 y 370 y los de la sobreestimada que tienden a 0.      
 
 
 Para intentar evitar datos anómalos, ejecutamos el código en un entorno lo más limpio posible, con el menor número de procesos en segundo plano, con un número de iteraciones totales de 10.
-Al ejecutar el código no encontramos datos lo suficientemente diferenciados respecto al resto para considerarlos anómalos, ya que solo varían unos pocas unidades.
+Al ejecutar el código no encontramos datos lo suficientemente diferenciados respecto al resto para considerarlos anómalos, ya que solo varían unas pocas unidades.
 
 CONCLUSIONES
+
 Después de comprobar que los algoritmos llevan al mismo resultado para cada  valor de entrada, analizamos la complejidad de cada algoritmo para saber cuál es el mas óptimo,es decir, el que utiliza menor tiempo de ejecución para la misma tarea.
 Para cada algoritmo creamos varias cotas con el fin de averiguar su complejidad de manera empírica:
 - Ordenación por inserción.

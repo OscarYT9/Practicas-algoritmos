@@ -6,7 +6,9 @@ from FuncionesAuxiliares import *   #Importamos las funciones auxiliares necesar
 
 def ordenado(v):
     '''
-    Comprueba que si el vector esta ordenado
+    Comprueba si el vector esta ordenado ascendentemente y devuelve True o False dependiendo del caso.
+    True, la lista está ordenada ascendentemente.
+    False, la lista no está ordenada ascendentemente.
     '''
     for i in range(len(v) - 1):
         if v[i] > v[i + 1]:
@@ -16,13 +18,14 @@ def ordenado(v):
 
 def probar_algoritmos(n):
     '''
-    True, la lista está ordenada ascendentemente
+    Prueba los algoritmos, comprobando la ordenación del vector antes y después de los algoritmos de ordenación.
     '''
     #Creamos los vectores para comprobar los algoritmos en los 6 casos
     vector_asc = vector_ordenado_aleatorio(n, "ascendente")
     vector_desc = vector_ordenado_aleatorio(n, "descendente")
     vector_alet = vector_ordenado_aleatorio(n, "aleatorio")
 
+    # Llamar al algoritmo de ordenación aquí
     print("Inicialización ascendente")
     print(vector_asc)
     print("Ordenado inicialmente?", ordenado(vector_asc))
@@ -30,8 +33,8 @@ def probar_algoritmos(n):
     print("Ordenado con el algoritmo de inserción?", ordenado(vector_asc), vector_asc)
     vector_asc=shell_sort_hibbard(vector_asc)
     print("Ordenado con el algoritmo de Shell?", ordenado(vector_asc), vector_asc)
-    # Llamar al algoritmo de ordenación aquí
 
+    # Llamar al algoritmo de ordenación aquí
     print("\nInicialización descendente")
     print(vector_desc)
     print("Ordenado inicialmente?", ordenado(vector_desc))
@@ -39,8 +42,8 @@ def probar_algoritmos(n):
     print("Ordenado con el algoritmo de inserción?", ordenado(vector_desc), vector_desc)
     vector_desc=shell_sort_hibbard(vector_desc)
     print("Ordenado con el algoritmo de Shell?", ordenado(vector_desc), vector_desc)
-    # Llamar al algoritmo de ordenación aquí
 
+    # Llamar al algoritmo de ordenación aquí
     print("\nInicialización aleatoria")
     print(vector_alet)
     print("Ordenado inicialmente?", ordenado(vector_alet))
@@ -48,8 +51,7 @@ def probar_algoritmos(n):
     print("Ordenado con el algoritmo de inserción?", ordenado(vector_alet), vector_alet)
     vector_alet=shell_sort_hibbard(vector_alet)
     print("Ordenado con el algoritmo de Shell?", ordenado(vector_alet), vector_alet)
-    # Llamar al algoritmo de ordenación aquí
-
+    
 #_______________________________________________________________________________________________________________________________________________________________________________________________________________________________
 
 
@@ -67,7 +69,9 @@ repeticiones_umbral = 10                                         # Número itera
 
 #-------------------------------------------------------------------------------------------------------------------------
 def test_tiempo_complejidad(algoritmo, func_type, exp1, exp2, exp3):
-    
+    '''
+    Permite comprobar el tiempo de ejecución del algoritmo para cada caso del vector y además nos ayuda a demostrar su complejidad de manera empírica gracias al cálculo del tiempo de ejecución entre las cotas.
+    '''
     # Comprobamos el valor del parámetro algoritmo y configuramos las variables en consecuencia
     if algoritmo == 1:
         algoritmo_str = "***ins_sort***"
