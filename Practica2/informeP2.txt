@@ -70,75 +70,8 @@ Ordenado con el algoritmo de Shell? True [-8, -7, 1, 1, 1, 3, 7, 9, 10, 10]
 
 
 3º Para comprobar el tiempo de ejecución, creamos la función test_tiempo_complejidad(algoritmo, func_type, exp1, exp2, exp3) que calcula el tiempo y nos permite medir la complejidad de manera empírica gracias a las cotas.
-
-Test 2 (Análisis de Complejidad): (Iteración nº 6)
-***ins_sort*** asc
-                                                     Subestimada    Ajustada  Sobreestimada
-           n                  t(n) (ns)            t(n)/n^0.5       t(n)/n^1     t(n)/n^1.5
-*        128                 11600.0000           1025.304833      90.625000       8.010194 (promedio de 10 repeticiones)
-*        256                 23070.0000           1441.875000      90.117188       5.632324 (promedio de 10 repeticiones)
-*        512                 49450.0000           2185.401896      96.582031       4.268363 (promedio de 10 repeticiones)
-*       1024                101690.0000           3177.812500      99.306641       3.103333 (promedio de 10 repeticiones)
-*       2048                206650.0000           4566.363010     100.903320       2.229669 (promedio de 10 repeticiones)
-*       4096                424660.0000           6635.312500     103.676758       1.619949 (promedio de 10 repeticiones)
-*       8192                882070.0000           9745.588726     107.674561       1.189647 (promedio de 10 repeticiones)
-       16384               1786300.0000          13955.468750     109.027100       0.851774
-***ins_sort*** desc
-                                                     Subestimada    Ajustada  Sobreestimada
-           n                  t(n) (ns)            t(n)/n^1.8       t(n)/n^2     t(n)/n^2.2
-*        128                683810.0000            110.143152      41.736450      15.815157 (promedio de 10 repeticiones)
-         256               2691900.0000            124.516523      41.075134      13.549741
-         512              11229900.0000            149.172909      42.838669      12.302177
-        1024              46159300.0000            176.083755      44.020939      11.005235
-        2048             182932600.0000            200.399758      43.614531       9.492164
-        4096             732208600.0000            230.349312      43.643034       8.268809
-        8192            2947745600.0000            266.310384      43.924832       7.244895
-       16384            11835014500.0000            307.052688      44.088865       6.330601
-***ins_sort*** alet
-                                                     Subestimada    Ajustada  Sobreestimada
-           n                  t(n) (ns)            t(n)/n^1.8       t(n)/n^2     t(n)/n^2.2
-*        128                331410.0000             53.381118      20.227661       7.664850 (promedio de 10 repeticiones)
-         256               1428500.0000             66.076694      21.797180       7.190388
-         512               5845300.0000             77.646320      22.298050       6.403433
-        1024              23734700.0000             90.540695      22.635174       5.658793
-        2048              96283300.0000            105.476826      22.955728       4.996030
-        4096             371614800.0000            116.908233      22.149968       4.196634
-        8192            1485499600.0000            134.205601      22.135669       3.651024
-       16384            6006926100.0000            155.846265      22.377544       3.213131
-***shell_sort_hibbard*** asc
-                                                     Subestimada    Ajustada  Sobreestimada
-           n                  t(n) (ns)            t(n)/n^0.9     t(n)/n^1.2     t(n)/n^1.4
-*        128                 81910.0000           1039.556153     242.485047      91.884651 (promedio de 10 repeticiones)
-*        256                191600.0000           1303.105374     246.892300      81.444086 (promedio de 10 repeticiones)
-*        512                473520.0000           1725.819462     265.591624      76.271165 (promedio de 10 repeticiones)
-        1024               1136100.0000           2218.945312     277.368164      69.342041
-        2048               2628200.0000           2750.815444     279.294554      60.785008
-        4096               6020800.0000           3376.993680     278.498117      52.765526
-        8192              13442700.0000           4040.504152     270.656570      44.641686
-       16384              28713600.0000           4624.978314     251.642342      36.132643
-***shell_sort_hibbard*** desc
-                                                     Subestimada    Ajustada  Sobreestimada
-           n                  t(n) (ns)            t(n)/n^0.9     t(n)/n^1.2     t(n)/n^1.4
-*        128                124750.0000           1583.257601     369.307894     139.941523 (promedio de 10 repeticiones)
-*        256                285890.0000           1944.388285     368.392692     121.524268 (promedio de 10 repeticiones)
-*        512                714160.0000           2602.870474     400.563680     115.031710 (promedio de 10 repeticiones)
-        1024               1746100.0000           3410.351562     426.293945     106.573486
-        2048               3801600.0000           3978.958980     403.989871      87.923402
-        4096               8827200.0000           4951.069394     408.310952      77.360459
-        8192              19388500.0000           5827.647329     390.369860      64.387015
-       16384              42092500.0000           6779.954435     368.893322      52.968394
-***shell_sort_hibbard*** alet
-                                                     Subestimada    Ajustada  Sobreestimada
-           n                  t(n) (ns)              t(n)/n^1    t(n)/n^1.25     t(n)/n^1.4
-*        128                138980.0000           1085.781250     322.804697     155.904392 (promedio de 10 repeticiones)
-*        256                335600.0000           1310.937500     327.734375     142.654672 (promedio de 10 repeticiones)
-*        512                864510.0000           1688.496094     354.962578     139.248997 (promedio de 10 repeticiones)
-        1024               2045600.0000           1997.656250     353.139070     124.853516
-        2048               5161600.0000           2520.312500     374.646695     119.377482
-        4096              11587000.0000           2828.857422     353.607178     101.546996
-        8192              26790800.0000           3270.361328     343.754390      88.969216
-       16384              62639600.0000           3823.217773     337.927902      78.824470
-
+Utilizamos un vector de progresión gométrica 2 porque nos ayuda a visualizar hacia qué valor de tiempo tiende el algoritmo.
+Los asteriscos en las tablas de datos simbolizan que esos valores están por debajo del umbral de confianza, por lo que utilizamos el método del promedio, ya que el algoritmo no modifica los valores de entrada (en el caso de otros algoritmos quelos modificasen, habría que usar otro método).
 
 Test 2 (Análisis de Complejidad): (Iteración nº 5)
 ***ins_sort*** asc
@@ -152,6 +85,10 @@ Test 2 (Análisis de Complejidad): (Iteración nº 5)
 *       4096                423130.0000            545.237678     103.303223      19.572301 (promedio de 10 repeticiones)
 *       8192                885830.0000            655.599222     108.133545      17.835383 (promedio de 10 repeticiones)
        16384               1735500.0000            737.715089     105.926514      15.209702
+
+La complejidad de la función en orden ascendente es, aproximadamente y comprobado de forma empírica, de O(n). 
+En cuánto a las cotas, podemos observar de foma empírica como los valores de la subestimada tienden al infinito, los de la ajustada un rango entre 90 y 100 y los de la subestimada que tienden a 0.
+
 ***ins_sort*** desc
                                                      Subestimada    Ajustada  Sobreestimada
            n                  t(n) (ns)            t(n)/n^1.8       t(n)/n^2     t(n)/n^2.2
@@ -163,6 +100,9 @@ Test 2 (Análisis de Complejidad): (Iteración nº 5)
         4096             746301200.0000            234.782776      44.483018       8.427956
         8192            2976328800.0000            268.892698      44.350755       7.315147
        16384            11744272700.0000            304.698444      43.750825       6.282063
+
+La complejidad de la función en orden descendente es, aproximadamente y comprobado de forma empírica, de O(n^2).
+En cuánto a las cotas, podemos observar de foma empírica como los valores de la subestimada tienden al infinito, los de la ajustada tienden hacia una constante de 44 y los de la subestimada que tienden a 0.
 ***ins_sort*** alet
                                                      Subestimada    Ajustada  Sobreestimada
            n                  t(n) (ns)            t(n)/n^1.8       t(n)/n^2     t(n)/n^2.2
@@ -174,6 +114,9 @@ Test 2 (Análisis de Complejidad): (Iteración nº 5)
         4096             367325300.0000            115.558777      21.894294       4.148193
         8192            1504093900.0000            135.885480      22.412746       3.696724
        16384            5969912900.0000            154.885979      22.239659       3.193332
+
+La complejidad de la función en orden aleatorio es, aproximadamente y comprobado de forma empírica, de O(n^2).
+En cuánto a las cotas, podemos observar de foma empírica como los valores de la subestimada tienden al infinito, los de la ajustada tienden hacia una constante de 22 y los de la subestimada que tienden a 0.      
 ***shell_sort_hibbard*** asc
                                                      Subestimada    Ajustada  Sobreestimada
            n                  t(n) (ns)              t(n)/n^1     t(n)/n^1.2     t(n)/n^1.4
@@ -185,6 +128,9 @@ Test 2 (Análisis de Complejidad): (Iteración nº 5)
         4096               5786200.0000           1412.646484     267.646460      50.709522
         8192              13197700.0000           1611.047363     265.723718      43.828068
        16384              28704500.0000           1751.983643     251.562591      36.121192
+La complejidad de la función en orden ascendente es, aproximadamente y comprobado de forma empírica, de O(n^1.2).
+En cuánto a las cotas, podemos observar de foma empírica como los valores de la subestimada tienden al infinito, los de la ajustada tienden hacia un rango de valores entre 250 y 270 y los de la subestimada que tienden a 0.      
+
 ***shell_sort_hibbard*** desc
                                                      Subestimada    Ajustada  Sobreestimada
            n                  t(n) (ns)              t(n)/n^1     t(n)/n^1.2     t(n)/n^1.4
@@ -196,6 +142,9 @@ Test 2 (Análisis de Complejidad): (Iteración nº 5)
         4096               8822000.0000           2153.808594     408.070421      77.314887
         8192              19104900.0000           2332.141113     384.659831      63.445211
        16384              41646000.0000           2541.870117     364.980253      52.406527
+
+La complejidad de la función en orden descendente es, aproximadamente y comprobado de forma empírica, de O(n^1.2).
+En cuánto a las cotas, podemos observar de foma empírica como los valores de la subestimada tienden al infinito, los de la ajustada tienden hacia un rango de valores entre 360 y 410, y los de la subestimada que tienden a 0.      
 ***shell_sort_hibbard*** alet
                                                      Subestimada    Ajustada  Sobreestimada
            n                  t(n) (ns)              t(n)/n^1    t(n)/n^1.25     t(n)/n^1.4
@@ -208,8 +157,31 @@ Test 2 (Análisis de Complejidad): (Iteración nº 5)
         8192              28492500.0000           3478.088379     365.589006      94.620369
        16384              61974700.0000           3782.635498     334.340901      77.987773
 
+La complejidad de la función en orden aleatorio es, aproximadamente y comprobado de forma empírica, de O(n^1.25).
+En cuánto a las cotas, podemos observar de foma empírica como los valores de la subestimada tienden al infinito, los de la ajustada tienden hacia un rango de valores entre 310 y 370y los de la subestimada que tienden a 0.      
 
-Para intentar evitar datos anómalos, ejecutamos el código en un entorno lo más limpio posible, con el menor número de procesos en segundo plano.
 
+Para intentar evitar datos anómalos, ejecutamos el código en un entorno lo más limpio posible, con el menor número de procesos en segundo plano, con un número de iteraciones totales de 10.
+Al ejecutar el código no encontramos datos lo suficientemente diferenciados respecto al resto para considerarlos anómalos, ya que solo varían unos pocas unidades.
 
 CONCLUSIONES
+Después de comprobar que los algoritmos llevan al mismo resultado para cada  valor de entrada, analizamos la complejidad de cada algoritmo para saber cuál es el mas óptimo,es decir, el que utiliza menor tiempo de ejecución para la misma tarea.
+Para cada algoritmo creamos varias cotas con el fin de averiguar su complejidad de manera empírica:
+- Ordenación por inserción.
+       - En orden ascendente. Hallamos las cotas n^0.8, n^1 y n^1.2.
+       - En orden descendente. Hallamos las cotas n^1.8, n^2 y n^2.2.
+       - En orden aleatorio. Hallamos las cotas n^1.8, n^2 y n^2.2.
+
+- Ordenación Shell.
+       - En orden ascendente. Hallamos las cotas n^1, n^1.2 y n^1.4.
+       - En orden descendente. Hallamos las cotas n^1, n^1.2 y n^1.4.
+       - En orden aleatorio. Hallamos las cotas n^1, n^1.25 y n^1.4.
+
+
+Para establecer la eficiencia de cada algoritmo de forma empírica, comparamos las cotas y los tiempos de ejecución resultantes de ambos algoritmos en cada uno de los órdenes del vector.
+Deducimos de los resultados obtenidos, que el algoritmo óptimo para resolver el problema para ordenar el vector en cada caso es:
+- En orden ascendente. Resulta más eficiente el algoritmo ins_sort.
+- En orden descendente. Resulta más eficiente el algoritmo shell_sort.
+- En orden aleatorio. Resulta más eficiente el algoritmo shell_sort.
+
+De los datos obtenidos, comprobamos que el algoritmo shell_sort es más eficiente en 2/3 casos, siendo el caso del vector ordenado el que supera la eficiencia del algoritmo shell_sort.
