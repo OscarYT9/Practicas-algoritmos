@@ -1,0 +1,2 @@
+#Repetir K 1000 veces, en la función de calcular promedio (debes repetir 1000 veces la ejecución)
+#Hacer dos funciones, una que imprima las tablas y otra que la calculé (que calcule el tiempo_de ejecución)
