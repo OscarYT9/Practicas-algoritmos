@@ -1,35 +1,30 @@
-def crear_monticulo(v, M):
-    M.Vector_monticulo = v.copy()  # Copia los elementos de v a M.Vector_monticulo
-    M.Tamaño_monticulo = len(v)
-    
-    for i in range(M.Tamaño_monticulo // 2, 0, -1):
-        hundir(M, i)
 
-    return M.Vector_monticulo
+#_____________________________________________________________________________________
 
 def hundir(M, i):
     while True:
-        izquierda = 2 * i
-        derecha = 2 * i + 1
-        minimo = i
+        HijoIzq = 2 * i
+        HijoDer = 2 * i + 1
+        j = i
 
-        if izquierda <= M.Tamaño_monticulo and M.Vector_monticulo[izquierda - 1] < M.Vector_monticulo[minimo - 1]:
-            minimo = izquierda
+        if HijoDer <= M.Tamaño_monticulo and M.Vector_monticulo[HijoDer - 1] > M.Vector_monticulo[i - 1]:
+            i = HijoDer
 
-        if derecha <= M.Tamaño_monticulo and M.Vector_monticulo[derecha - 1] < M.Vector_monticulo[minimo - 1]:
-            minimo = derecha
+        if HijoIzq <= M.Tamaño_monticulo and M.Vector_monticulo[HijoIzq - 1] > M.Vector_monticulo[i - 1]:
+            i = HijoIzq
 
-        if minimo == i:
+        if j == i:
             break
         else:
-            M.Vector_monticulo[i - 1], M.Vector_monticulo[minimo - 1] = M.Vector_monticulo[minimo - 1], M.Vector_monticulo[i - 1]
-            i = minimo
-
+            M.Vector_monticulo[j - 1], M.Vector_monticulo[i - 1] = M.Vector_monticulo[i - 1], M.Vector_monticulo[j - 1]
+#__________________________________________________________________________________________________________________________________
 # Uso del código:
 class Monticulo:
-    pass
+    def __init__(self, tamano_maximo):
+        self.Tamano_monticulo = tamano_maximo
+        self.Vector_monticulo = [None] * (tamano_maximo + 1)
 
-v = [3, 1, 4, 1, 5, 9, 2, 6, 5, 3, 5]
-M = Monticulo()
-crear_monticulo(v, M)
-print(M.Vector_monticulo)
+    def __str__(self):
+        return f"Tamaño montículo: {self.Tamano_monticulo}, Vector montículo: {self.Vector_monticulo}"
+
+
