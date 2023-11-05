@@ -48,3 +48,15 @@ class Monticulo:
             else:
                 break
 
+def ordenacionPorMonticulos(V):
+    mi_monticulo = Monticulo()
+    mi_monticulo.crear_Monticulo(V)
+
+    for i in range(len(V)):
+        V[i] = mi_monticulo.consultar_menor()
+        mi_monticulo.quitarMenor()
+
+# Ejemplo de uso
+V = [9, 5, 6, 2, 3]
+ordenacionPorMonticulos(V)
+print("Arreglo ordenado:", V)

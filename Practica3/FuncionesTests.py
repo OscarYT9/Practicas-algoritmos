@@ -3,12 +3,12 @@ from FuncionesAuxiliares import *   #Importamos las funciones auxiliares necesar
 
 # Estamos definiendo estas variables como globales, ya que usamos los mismos valores para cada prueba pero podrían establecerse como parametros de entrada de la función en caso de querer probar con otras convinaciones
 
-tamanos_n = [500, 1000, 2000, 4000, 8000, 16000, 32000, 64000, 128000, 256000,512000,1024000]   # Lista con los tamaños del vector aleatorio, es una progresión geométrica de razón 2, si se quisiese se podría automatizar su creación también, en este caso no lo hacemos ya que con esos valores deberia ser suficiente para comprobar la complejidad algorítmica
+tamanos_n = [500, 1000, 2000, 4000, 8000, 16000, 32000, 64000, 128000, 256000, 512000, 1024000]   # Lista con los tamaños del vector aleatorio, es una progresión geométrica de razón 2, si se quisiese se podría automatizar su creación también, en este caso no lo hacemos ya que con esos valores deberia ser suficiente para comprobar la complejidad algorítmica
 umbral_confianza = 1000                                          # El tiempo en us (microsegundos) en el cual no nos podemos fiar de los valores obtenidos y habrá que realizar varias iteraciones y hacer el promedio de las mismas para asegurarnos de obtener valores correctos.
 repeticiones_umbral = 1000                                         # Número iteraciones una vez superado el umbral de tiempo
 
 #-------------------------------------------------------------------------------------------------------------------------
-def test_tiempo_complejidad(exp1, exp2, exp3):
+def test_tiempo_complejidad_crearMonticulo(exp1, exp2, exp3):
     '''
     Permite comprobar el tiempo de ejecución del algoritmo para cada caso del vector y además nos ayuda a demostrar su complejidad de manera empírica gracias al cálculo del tiempo de ejecución entre las cotas.
     '''
