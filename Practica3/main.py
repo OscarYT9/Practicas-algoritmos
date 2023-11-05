@@ -1,136 +1,67 @@
-# from ALgoritmos import *
-# from FuncionesAuxiliares import *
-# from FuncionesTest import *
+from Algoritmos import *
+from FuncionesAuxiliares import *
+from FuncionesTests import *
 
 
-# v=[1,2,3,4,3,53,53,2,4,32,35,36]
-# tamaño_maximo=len(v)
+# # Crear un montículo
+# mi_monticulo = Monticulo()
+# print(mi_monticulo)
 
-# crear_monticulo(v,Monticulo(v))
+# # Agregar elementos al montículo
+# elementos = [9, 5, 6, 2, 3]
+# mi_monticulo.crear_Monticulo(elementos)
+# print(mi_monticulo)
 
-# v = [3, 1, 4, 1, 5, 9, 2, 6, 5, 3, 5]
-# M = Monticulo(11)
-# crear_Monticulo(v, M)
-# print(M.Vector_monticulo)
+# menor_eliminado = mi_monticulo.quitarMenor()
+# print(f"El menor elemento eliminado es: {menor_eliminado}")
+# print(mi_monticulo)
 
-# class MinHeap:
-#     def __init__(self):
-#         self.heap = []
+# menor = mi_monticulo.quitarMenor()
+# print(f"El menor elemento eliminado es: {menor}")
+# print(mi_monticulo)
 
-#     def parent(self, i):
-#         return (i - 1) // 2
+# menor_nuevo = mi_monticulo.quitarMenor()
+# print(f"El menor elemento eliminado es: {menor_nuevo}")
+# print(mi_monticulo)
 
-#     def left_child(self, i):
-#         return 2 * i + 1
+# menor_eliminado = mi_monticulo.quitarMenor()
+# print(f"El menor elemento eliminado es: {menor_eliminado}")
+# print(mi_monticulo)
 
-#     def right_child(self, i):
-#         return 2 * i + 2
+# menor_eliminado = mi_monticulo.quitarMenor()
+# print(f"El menor elemento eliminado es: {menor_eliminado}")
+# print(mi_monticulo)
 
-#     def insert(self, value):
-#         self.heap.append(value)
-#         i = len(self.heap) - 1
-#         while i > 0 and self.heap[i] < self.heap[self.parent(i)]:
-#             self.heap[i], self.heap[self.parent(i)] = self.heap[self.parent(i)], self.heap[i]
-#             i = self.parent(i)
+# menor_eliminado = mi_monticulo.quitarMenor()
+# print(f"El menor elemento eliminado es: {menor_eliminado}")
+# print(mi_monticulo)
 
-#     def extract_min(self):
-#         if not self.heap:
-#             return None
-#         root = self.heap[0]
-#         self.heap[0] = self.heap[-1]
-#         self.heap.pop()
-#         self._heapify(0)
-#         return root
+# menor_eliminado = mi_monticulo.quitarMenor()
+# print(f"El menor elemento eliminado es: {menor_eliminado}")
+# print(mi_monticulo)
 
-#     def _heapify(self, i):
-#         left = self.left_child(i)
-#         right = self.right_child(i)
-#         smallest = i
-#         if left < len(self.heap) and self.heap[left] < self.heap[smallest]:
-#             smallest = left
-#         if right < len(self.heap) and self.heap[right] < self.heap[smallest]:
-#             smallest = right
-#         if smallest != i:
-#             self.heap[i], self.heap[smallest] = self.heap[smallest], self.heap[i]
-#             self._heapify(smallest)
+# menor_eliminado = mi_monticulo.quitarMenor()
+# print(f"El menor elemento eliminado es: {menor_eliminado}")
+# print(mi_monticulo)
 
-# # Ejemplo de uso
-# heap = MinHeap()
-# heap.insert(5)
-# heap.insert(3)
-# heap.insert(8)
-# heap.insert(1)
 
-# print("Elementos extraídos en orden ascendente:")
-# while heap.heap:
-#     print(heap.extract_min())
+# Importa las funciones desde los otros archivos
+from FuncionesTests import *
 
-class MonticuloBinario:
-    def __init__(self):
-        self.listaMonticulo = [0]
-        self.tamanoActual = 0
+def test(iteraciones):                  # Función que prueba los algoritmos 
+    # print("\nTest 1 (Casos de Prueba):")
+    # probar_algoritmos(10)
 
-    def __str__(self):
-        return f"Tamaño montículo: {self.tamanoActual}, Vector montículo: {self.listaMonticulo}"
-
-    def infiltArriba(self,i):
-        while i // 2 > 0:
-          if self.listaMonticulo[i] < self.listaMonticulo[i // 2]:
-             tmp = self.listaMonticulo[i // 2]
-             self.listaMonticulo[i // 2] = self.listaMonticulo[i]
-             self.listaMonticulo[i] = tmp
-          i = i // 2
-
-    def insertar(self,k):
-      self.listaMonticulo.append(k)
-      self.tamanoActual = self.tamanoActual + 1
-      self.infiltArriba(self.tamanoActual)
-
-    def infiltAbajo(self,i):
-      while (i * 2) <= self.tamanoActual:
-          hm = self.hijoMin(i)
-          if self.listaMonticulo[i] > self.listaMonticulo[hm]:
-              tmp = self.listaMonticulo[i]
-              self.listaMonticulo[i] = self.listaMonticulo[hm]
-              self.listaMonticulo[hm] = tmp
-          i = hm
-
-    def hijoMin(self,i):
-      if i * 2 + 1 > self.tamanoActual:
-          return i * 2
-      else:
-          if self.listaMonticulo[i*2] < self.listaMonticulo[i*2+1]:
-              return i * 2
-          else:
-              return i * 2 + 1
-
-    def eliminarMin(self):
-      valorSacado = self.listaMonticulo[1]
-      self.listaMonticulo[1] = self.listaMonticulo[self.tamanoActual]
-      self.tamanoActual = self.tamanoActual - 1
-      self.listaMonticulo.pop()
-      self.infiltAbajo(1)
-      return valorSacado
-
-    def construirMonticulo(self,unaLista):
-      i = len(unaLista) // 2
-      self.tamanoActual = len(unaLista)
-      self.listaMonticulo = [0] + unaLista[:]
-      while (i > 0):
-          self.infiltAbajo(i)
-          i = i - 1
-
-miMonticulo = MonticuloBinario()
-miMonticulo.construirMonticulo([9,5,6,2,3])
-print(miMonticulo)
-
-print(miMonticulo.eliminarMin())
-print(miMonticulo)
-print(miMonticulo.eliminarMin())
-print(miMonticulo)
-print(miMonticulo.eliminarMin())
-print(miMonticulo)
-print(miMonticulo.eliminarMin())
-print(miMonticulo)
-print(miMonticulo.eliminarMin())
-print(miMonticulo)
+    for i in range(iteraciones):        # Bucle para comprobar la eficacia de los algoritmos
+        print(f"\nTest 2 (Análisis de Complejidad): (Iteración nº {i+1})")
+        test_tiempo_complejidad("asc", 0.8, 1, 1.2)   ##Se ejecuta muy rapido, y como se puede ver al ejecutarse tan rapido, es tambiñén más neceasrio hacer el promedio, es la función que tiene más *
+        test_tiempo_complejidad("desc", 1.8, 1, 2.2)#
+        test_tiempo_complejidad("alet", 1.8, 1, 2.2)#
+        # test_tiempo_complejidad(2 ,"asc",1,1.2,1.4)#   ##En cambio el algoritmo del shell parece que se prácticamente todas sus ejecuciones tienen el mismo tiempo de ejecución y por lo tanto la misma complejidad
+        # test_tiempo_complejidad(2 ,"desc",1,1.2,1.4)#
+        # test_tiempo_complejidad(2 ,"alet",1,1.25,1.4)
+        
+# Llama a las funciones que deseas ejecutar
+if __name__ == "__main__":
+    #Puedes elegir el número de iteraciones que deseas.
+    test(10)

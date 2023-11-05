@@ -1,35 +1,24 @@
-def crear_monticulo(v, M):
-    M.Vector_monticulo = v.copy()  # Copia los elementos de v a M.Vector_monticulo
-    M.Tamaño_monticulo = len(v)
+from Algoritmos import *            #Importamos los algoritmos a probar
+from FuncionesAuxiliares import *   #Importamos las funciones auxiliares necesarias para la ejecución de las pruebas
+
+# Estamos definiendo estas variables como globales, ya que usamos los mismos valores para cada prueba pero podrían establecerse como parametros de entrada de la función en caso de querer probar con otras convinaciones
+
+tamanos_n = [500, 1000, 2000, 4000, 8000, 16000, 32000, 64000, 128000, 256000,512000,1024000]   # Lista con los tamaños del vector aleatorio, es una progresión geométrica de razón 2, si se quisiese se podría automatizar su creación también, en este caso no lo hacemos ya que con esos valores deberia ser suficiente para comprobar la complejidad algorítmica
+umbral_confianza = 1000                                          # El tiempo en us (microsegundos) en el cual no nos podemos fiar de los valores obtenidos y habrá que realizar varias iteraciones y hacer el promedio de las mismas para asegurarnos de obtener valores correctos.
+repeticiones_umbral = 10                                         # Número iteraciones una vez superado el umbral de tiempo
+
+#-------------------------------------------------------------------------------------------------------------------------
+def test_tiempo_complejidad(func_type, exp1, exp2, exp3):
+    '''
+    Permite comprobar el tiempo de ejecución del algoritmo para cada caso del vector y además nos ayuda a demostrar su complejidad de manera empírica gracias al cálculo del tiempo de ejecución entre las cotas.
+    '''
+
+    print(f"{'Subestimada':>64}{'Ajustada':>12}{'Sobreestimada':>15}")
+    print(f"{'n':>12}\t\t{'t(n) (ns)':>15}{'t(n)/n^'+str(exp1):>22}{'t(n)/n^'+str(exp2):>15}{'t(n)/n^'+str(exp3):>15}")
+
     
-    for i in range(M.Tamaño_monticulo // 2, 0, -1):
-        hundir(M, i)
-
-    return M.Vector_monticulo
-
-def hundir(M, i):
-    while True:
-        izquierda = 2 * i
-        derecha = 2 * i + 1
-        minimo = i
-
-        if izquierda <= M.Tamaño_monticulo and M.Vector_monticulo[izquierda - 1] < M.Vector_monticulo[minimo - 1]:
-            minimo = izquierda
-
-        if derecha <= M.Tamaño_monticulo and M.Vector_monticulo[derecha - 1] < M.Vector_monticulo[minimo - 1]:
-            minimo = derecha
-
-        if minimo == i:
-            break
-        else:
-            M.Vector_monticulo[i - 1], M.Vector_monticulo[minimo - 1] = M.Vector_monticulo[minimo - 1], M.Vector_monticulo[i - 1]
-            i = minimo
-
-# Uso del código:
-class Monticulo:
-    pass
-
-v=[5,33,17,27,9,14,18,11,21,19]
-M = Monticulo()
-crear_monticulo(v, M)
-print(M.Vector_monticulo)
+    # Iteramos sobre diferentes tamaños de entrada
+    for n in tamanos_n:
+        
+        tiempo_ejecucion = calcular_tiempo_ejecucion(n)  # Calculamos el tiempo de ejecución del algoritmo para ese vector
+        print(" ",cotas_ajustadas(n, tiempo_ejecucion, exp1, exp2, exp3))    # Imprimimos el tiempo de ejecución normal

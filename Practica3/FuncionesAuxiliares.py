@@ -1,81 +1,32 @@
+#Funciones que se usan dentro de otras funciones.
+from Algoritmos import *            #Importamos los algoritmos a probar
 
-#_____________________________________________________________________________________
-# Función para crear un montículo de mínimos a partir de un vector.
-def crearMonticulo(arr):
-    n = len(arr)
-    for i in range(n // 2 - 1, -1, -1):
-        heapify(arr, n, i)
+def inicializar(n): # Crea un vector de una longitud dada (n) con elementos aleatorios 
+    import random
+    
+    v=list(range(n))                    # Crear una lista de números en el rango [0, n-1]
+    for i in v:                         # Iterar sobre la lista y asignar números enteros aleatorios entre -n y n
+        v[i] = random.randint(-n, n)
+    return v                            # Devolver la lista con valores aleatorios
 
-# Función para consultar el menor elemento del montículo.
-def consultarMenor(arr):
-    return arr[0]
+#-------------------------------------------
 
-# Función para quitar el menor elemento del montículo.
-def quitarMenor(arr):
-    n = len(arr)
-    if n == 0:
-        return
-    arr[0] = arr[n - 1]
-    arr.pop()
-    heapify(arr, n - 1, 0)
+def calcular_tiempo_ejecucion(n):    # Medir el tiempo de ejecución de una función (que representa un algoritmo) cuando se le proporciona un vector como entrada
+    import time
+    mi_monticulo = Monticulo()
+    vector = inicializar(n)  # Puedes usar el vector aleatorio como entrada
+    inicio = time.perf_counter_ns()
+    mi_monticulo.crear_Monticulo(vector)
+    fin = time.perf_counter_ns()
+    tiempo_ejecucion = fin - inicio
+    return tiempo_ejecucion
 
-# Función para mantener la propiedad de montículo en el índice dado.
-def heapify(arr, n, i):
-    smallest = i
-    left = 2 * i + 1
-    right = 2 * i + 2
+def cotas_ajustadas(n, tiempo, exp1, exp2, exp3):   # Calcula las cotas  
+    
+   # Calcula las cotas subestimada, ajustada y sobrestimada en función de los parámetros dados
+    cota_subestimada= tiempo / (n ** exp1)
+    cota_ajustada = tiempo / (n ** exp2)
+    cota_sobrestimada = tiempo / (n ** exp3)
 
-    if left < n and arr[left] < arr[smallest]:
-        smallest = left
-    if right < n and arr[right] < arr[smallest]:
-        smallest = right
-
-    if smallest != i:
-        arr[i], arr[smallest] = arr[smallest], arr[i]
-        heapify(arr, n, smallest)
-
-# Función para ordenar un arreglo usando montículos.
-def ordenacionPorMonticulos(arr):
-    n = len(arr)
-
-    # Crear un montículo a partir del arreglo dado.
-    crearMonticulo(arr)
-
-    # Extraer elementos uno por uno del montículo para ordenarlos.
-    for i in range(n - 1, -1, -1):
-        arr[i] = consultarMenor(arr)
-        quitarMenor(arr)
-
-# Función para validar que el montículo esté ordenado.
-def validarMonticuloOrdenado(arr):
-    n = len(arr)
-    for i in range(1, n):
-        if arr[i] < arr[(i - 1) // 2]:
-            return False
-    return True
-
-# Ejemplo de uso
-arr = [12, 11, 13, 5, 6, 7]
-print("Arreglo original:", arr)
-
-# Crear un montículo a partir del arreglo
-crearMonticulo(arr)
-print("Montículo creado:", arr)
-
-# Consultar el menor elemento del montículo
-menor = consultarMenor(arr)
-print("Menor elemento del montículo:", menor)
-
-# Quitar el menor elemento del montículo
-quitarMenor(arr)
-print("Montículo después de quitar el menor elemento:", arr)
-
-# Ordenar el arreglo usando montículos
-ordenacionPorMonticulos(arr)
-print("Arreglo ordenado:", arr)
-
-# Validar que el arreglo esté ordenado
-print("¿El arreglo está ordenado?", validarMonticuloOrdenado(arr))
-
-
-#__________________________________________________________________________________________________________________________________
+    # Devuelve una cadena formateada con las cotas y el tamaño del vector
+    return f"{n:>10}\t\t{tiempo:>15.4f}       {cota_subestimada:>15.6f}{cota_ajustada:>15.6f}{cota_sobrestimada:>15.6f}"
