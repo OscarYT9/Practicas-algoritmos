@@ -57,10 +57,9 @@ def test(iteraciones):                  # Función que prueba los algoritmos
         test_tiempo_complejidad_crearMonticulo(0.8, 1, 1.2)   ##Se ejecuta muy rapido, y como se puede ver al ejecutarse tan rapido, es tambiñén más neceasrio hacer el promedio, es la función que tiene más *
         test_tiempo_complejidad_crearMonticulo(0.8, 1, 1.2)#
         test_tiempo_complejidad_crearMonticulo(0.8, 1, 1.2)#
-        # test_tiempo_complejidad(2 ,"asc",1,1.2,1.4)#   ##En cambio el algoritmo del shell parece que se prácticamente todas sus ejecuciones tienen el mismo tiempo de ejecución y por lo tanto la misma complejidad
-        # test_tiempo_complejidad(2 ,"desc",1,1.2,1.4)#
-        # test_tiempo_complejidad(2 ,"alet",1,1.25,1.4)
-        
+        test_tiempo_complejidad_ordenacionPorMonticulos()
+        test_tiempo_complejidad_ordenacionPorMonticulos()
+        test_tiempo_complejidad_ordenacionPorMonticulos()
 # Llama a las funciones que deseas ejecutar
 if __name__ == "__main__":
     #Puedes elegir el número de iteraciones que deseas.
