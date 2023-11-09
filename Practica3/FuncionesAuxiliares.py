@@ -25,7 +25,8 @@ def calcular_tiempo_ejecucion(alg, n, orden):    # Medir el tiempo de ejecución
     import time
     if alg == 1:
 
-        mi_monticulo = Monticulo()
+        mi_monticulo = Monticulo()     # Es necesario definir siempre al principio mi_monticulo, ya que el método crearMonticulo pertenece a la clase Monticulo y sino no podremos llamarlo. 
+                                       # Podríamos reducir esta función si definiesemos una función aparte, y inicializaramos el mónticulo dentro de ella, pero entonces no estariamos siguiendo la definición del mónticulo proporcionada en las transparencias.
         vector = inicializar(n,orden)  # Puedes usar el vector aleatorio como entrada
 
         inicio = time.perf_counter_ns()
@@ -33,11 +34,9 @@ def calcular_tiempo_ejecucion(alg, n, orden):    # Medir el tiempo de ejecución
         fin = time.perf_counter_ns()
 
         tiempo_ejecucion = fin - inicio
-
-        return tiempo_ejecucion
     
     if alg ==2:
-        
+                                       # En este otro caso no es necesario definir el monticulo primero, porque ordenacionPorMonticulos no pertenece a la clase monticulo, así que podemos crear el montículo dentro de la propio función
         vector = inicializar(n,orden)  # Puedes usar el vector aleatorio como entrada
 
         inicio = time.perf_counter_ns()
@@ -45,15 +44,14 @@ def calcular_tiempo_ejecucion(alg, n, orden):    # Medir el tiempo de ejecución
         fin = time.perf_counter_ns()
 
         tiempo_ejecucion = fin - inicio
-
-        return tiempo_ejecucion
+    return tiempo_ejecucion
 
 
 
 def calcular_tiempo_promedio(alg, repeticiones_umbral, n, orden):    # Realizar repeticiones de inicialización + algoritmo K veces, es decir, repetir el cálculo del algoritmo K veces y para eso necesitas inicializar el vector K veces también, sino inicializas el vector, el algoritmo siempre iteraría las K veces sobre el vector ordenado
     import time
     if alg ==1:
-        # Mide el tiempo de ejecución total de Ordenacion_func ejecutado en un vector inicializado repeticiones_umbral veces
+        # Mide el tiempo de ejecución total de CrearMonticulo ejecutado en un vector inicializado repeticiones_umbral veces
 
         ta = time.perf_counter_ns()                  # Tiempo antes de comenzar la ejecución
         for _ in range(repeticiones_umbral):         # Inicializa un vector y ejecuta el algoritmo de ordenación en ese vector repeticiones_umbral veces
@@ -76,7 +74,6 @@ def calcular_tiempo_promedio(alg, repeticiones_umbral, n, orden):    # Realizar 
         t2 = tb - ta                                 # Tiempo de inicialización
 
         t = (t1 - t2) / repeticiones_umbral          # Resta el tiempo de inicialización para almacenar solo con el del algoritmo y después lo divides entre las K repeticiones para obtener el promedio del tiempo necesario para ejecutar el algoritmo
-        return t
     
     if alg==2:
 
@@ -101,7 +98,7 @@ def calcular_tiempo_promedio(alg, repeticiones_umbral, n, orden):    # Realizar 
         t2 = tb - ta                                 # Tiempo de inicialización
 
         t = (t1 - t2) / repeticiones_umbral          # Resta el tiempo de inicialización para almacenar solo con el del algoritmo y después lo divides entre las K repeticiones para obtener el promedio del tiempo necesario para ejecutar el algoritmo
-        return t       
+    return t       
 
 
 def cotas_ajustadas(alg, n, tiempo, exp1, exp2, exp3):   # Calcula las cotas  
@@ -110,18 +107,15 @@ def cotas_ajustadas(alg, n, tiempo, exp1, exp2, exp3):   # Calcula las cotas
         cota_subestimada= tiempo / (n ** exp1)
         cota_ajustada = tiempo / (n ** exp2)
         cota_sobrestimada = tiempo / (n ** exp3)
-
-        # Devuelve una cadena formateada con las cotas y el tamaño del vector
-        return f"{n:>10}\t\t{tiempo:>15.4f}       {cota_subestimada:>15.6f}{cota_ajustada:>15.6f}{cota_sobrestimada:>15.6f}"
     
     if alg==2:
         import math
         # Calcula las cotas subestimada, ajustada y sobrestimada en función de los parámetros dados
         cota_subestimada = tiempo / (n ** 1)  # Utiliza log base 2 para n log(n)
         cota_ajustada = tiempo / (n * math.log(n, 2))
-        cota_sobrestimada = tiempo / (n ** 1.5)
+        cota_sobrestimada = tiempo / (n ** 1.5) # Otra cota posible sería 1.3, se eligió 1.5 para ver más claramente los valores
 
-        # Devuelve una cadena formateada con las cotas y el tamaño del vector
-        return f"{n:>10}\t\t{tiempo:>15.4f}       {cota_subestimada:>15.6f}{cota_ajustada:>15.6f}{cota_sobrestimada:>15.6f}"
+    # Devuelve una cadena formateada con las cotas y el tamaño del vector
+    return f"{n:>10}\t\t{tiempo:>15.4f}       {cota_subestimada:>15.6f}{cota_ajustada:>15.6f}{cota_sobrestimada:>15.6f}"
 
 #______________________________________

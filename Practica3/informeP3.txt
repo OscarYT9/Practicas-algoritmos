@@ -116,7 +116,7 @@ def probar_algoritmo_ordenación(n,orden):
 
 Test 1 (Casos de Prueba):
 Prueba con vector ascendente
-Creamos el montículo
+Creamos el montículo vacío
 Tamaño montículo: 0, Vector montículo: []
 
 Creamos el montículo de mínimos con el vector ascendente
@@ -135,7 +135,7 @@ El menor elemento eliminado es: 5
 Tamaño montículo: 0, Vector montículo: []
 ________________________________________________________
 Prueba con vector descendente
-Creamos el montículo
+Creamos el montículo vacío
 Tamaño montículo: 0, Vector montículo: []
 
 Creamos el montículo de mínimos con el vector descendente
@@ -154,7 +154,7 @@ El menor elemento eliminado es: 5
 Tamaño montículo: 0, Vector montículo: []
 ________________________________________________________
 Prueba con vector aleatorio
-Creamos el montículo
+Creamos el montículo vacío
 Tamaño montículo: 0, Vector montículo: []
 
 Creamos el montículo de mínimos con el vector aleatorio
@@ -180,8 +180,8 @@ Vector aleatorio sin ordenar: [1, 3, -2, -1, -2] False
 Arreglo aleatorio ordenado: [-2, -2, -1, 1, 3] True
 
 
-3º Para comprobar el tiempo de ejecución de los dos algoritmos (el de creación y ordenación), creamos dos funciones funciones 
-test_tiempo_complejidad_crearMonticulo(orden, exp1, exp2, exp3): y test_tiempo_complejidad_ordenacionPorMonticulos(orden) que calculan
+3º Para comprobar el tiempo de ejecución de los dos algoritmos (el de creación y ordenación), creamos una función 
+def test_tiempo_complejidad(alg, orden, exp1, exp2, exp3) que calcula
 el tiempo y nos permite medir la complejidad de manera empírica gracias a las cotas.
 
 Utilizamos un vector de progresión geométrica 2 porque nos ayuda a visualizar hacia qué valor de tiempo tiende el algoritmo.
@@ -189,36 +189,152 @@ Los asteriscos en las tablas de datos simbolizan que esos valores están por deb
 el método del promedio para tener una medida más precisa.
 
 
+Test 2 (Análisis de Complejidad): (Iteración nº 5)
+Creación montículo (orden ascendente)
+                                                     Subestimada    Ajustada  Sobreestimada
+           n                  t(n) (ns)            t(n)/n^0.8       t(n)/n^1     t(n)/n^1.2
+*        500                211398.8000           1465.299881     # 422.797600     121.994012 (promedio de 1000 repeticiones)
+*       1000                420815.8000           1675.297875     # 420.815800     105.704150 (promedio de 1000 repeticiones)
+        2000               1262900.0000           2887.652750     # 631.450000     138.080696
+        4000               1721000.0000           2260.127176     # 430.250000      81.904711
+        8000               3473100.0000           2619.662229     # 434.137500      71.946439
+       16000               7390900.0000           3201.852638     461.931250      66.642817
+       32000              14908300.0000           3709.438207     465.884375      58.512432
+       64000              29866500.0000           4268.156667     466.664062      51.023279
+      128000              58472300.0000           4799.347554     456.814844      43.480869
+      256000             114039300.0000           5376.040980     445.466016      36.911916
+      512000             227515900.0000           6160.213782     444.366992      32.054411
+     1024000             453626700.0000           7054.376642     442.994824      27.818817
+     
+La complejidad de la función crear montículo en orden ascendente es, aproximadamente y comprobado de forma empírica, de O(n^1).
+En cuánto a las cotas, podemos observar de foma empírica como los valores de la subestimada tienden al infinito, los de la ajustada 
+tienden a un rango de valores entre 440 y 460 y los de la sobreestimada que tienden a 0. 
+
+Creación montículo (orden descendente)
+                                                     Subestimada    Ajustada  Sobreestimada
+           n                  t(n) (ns)            t(n)/n^0.8       t(n)/n^1     t(n)/n^1.2
+*        500                353816.5000           2452.460824     # 707.633000     204.180413 (promedio de 1000 repeticiones)
+*       1000                695816.9000           2770.096973     # 695.816900   174.781303 (promedio de 1000 repeticiones)
+        2000               1447100.0000           3308.830703     723.550000     158.220426
+        4000               3248000.0000           4265.481154     # 812.000000   154.576700
+        8000               5840700.0000           4405.476716     730.087500     120.992072
+       16000              12267700.0000           5314.558120     # 766.731250   110.616310
+       32000              24226900.0000           6028.064131     # 757.090625      95.086283
+       64000              47592000.0000           6801.269385     743.625000      81.305137
+      128000              92940000.0000           7628.421692     726.093750      69.111561
+      256000             184251800.0000           8685.998840     719.733594      59.638098
+      512000             370063900.0000          10019.839216     722.781055      52.137808
+     1024000             752230400.0000          11697.981100     734.600000      46.130794
+
+La complejidad de la función crear montículo en orden descendente es, aproximadamente y comprobado de forma empírica, de O(n^1).
+En cuánto a las cotas, podemos observar de foma empírica como los valores de la subestimada tienden al infinito, los de la ajustada 
+tienden a un rango de valores entre 720 y 740 y los de la sobreestimada que tienden a 0.
+
+Creación montículo (orden aleatorio)
+                                                    Subestimada    Ajustada  Sobreestimada
+           n                  t(n) (ns)            t(n)/n^0.8       t(n)/n^1     t(n)/n^1.2
+*        500                319899.9000           2217.369660     # 639.799800     184.607822 (promedio de 1000 repeticiones)
+*       1000                647450.2000           2577.545672     # 647.450200     162.632137 (promedio de 1000 repeticiones)
+        2000               1314000.0000           3004.494191     # 657.000000     143.667777
+        4000               2847600.0000           3739.650288     711.900000     135.521124
+        8000               5653800.0000           4264.503271     706.725000     117.120376
+       16000              11243700.0000           4870.945421     702.731250     101.383031
+       32000              22779100.0000           5667.826905     711.846875      89.403925
+       64000              43588400.0000           6229.123602     681.068750      74.465474
+      128000              86131700.0000           7069.603278     672.903906      64.048809
+      256000             172991500.0000           8155.165748     675.748047      55.993396
+      512000             352276700.0000           9538.233514     688.040430      49.631793
+     1024000             715803300.0000          11131.501033     699.026660      43.896890
+     
+La complejidad de la función crear montículo en orden aleatorio es, aproximadamente y comprobado de forma empírica, de O(n^1).
+En cuánto a las cotas, podemos observar de foma empírica como los valores de la subestimada tienden al infinito, los de la ajustada tienden 
+a un rango de valores entre 680 y 712 y los de la sobreestimada que tienden a 0.
+     
+     Ordenación del vector (orden ascendente)
+                                                     Subestimada  Ajustada  Sobreestimada
+           n                  t(n) (ns)           t(n)/n*1        t(n)/n*log(n)  t(n)/n^1.5
+         500               1609900.0000           3219.800000     359.120842     143.993833
+        1000               3885400.0000           3885.400000     # 389.873982     122.867136
+        2000               8213400.0000           4106.700000     # 374.501257      91.828604
+        4000              18624500.0000           4656.125000     # 389.119918      73.619800
+        8000              38253200.0000           4781.650000     # 368.789878      53.460472
+       16000              79852400.0000           4990.775000     357.357303      39.455541
+       32000             169625600.0000           5300.800000     354.194601      29.632373
+       64000             362582100.0000           5665.345312     354.842907      22.394244
+      128000             764423900.0000           5972.061719     352.006227      16.692420
+      256000            1626838500.0000           6354.837891     353.718924      12.559851
+      512000            3482162200.0000           6801.098047     358.598302       9.504823
+     1024000            7321673000.0000           7150.071289     358.116225       7.065785
+
+La complejidad de la función ordenación del vector en orden ascendente es, aproximadamente y comprobado de forma empírica, de O(n*log(n)).
+En cuánto a las cotas, podemos observar de foma empírica como los valores de la subestimada tienden al infinito, los de la ajustada tienden 
+a un rango de valores entre 350 y 360 y los de la sobreestimada que tienden a 0.   
+     Ordenación del vector (orden descendente)
+                                                     Subestimada    Ajustada  Sobreestimada
+           n                                      t(n) (ns)t(n)/n*1 t(n)/n*log(n) t(n)/n^1.5
+         500               1908700.0000           3817.400000     # 425.774241     170.719318
+        1000               4058500.0000           4058.500000     # 407.243412     128.341039
+        2000               9296700.0000           4648.350000     # 423.895809     103.940266
+        4000              19910500.0000           4977.625000     # 415.988194      78.703162
+        8000              41508300.0000           5188.537500     # 400.171512      58.009613
+       16000              87536700.0000           5471.043750     # 391.746259      43.252399
+       32000             183489000.0000           5734.031250     383.142717      32.054209
+       64000             396089100.0000           6188.892187     387.634712      24.463744
+      128000             823828000.0000           6436.156250     379.360962      17.989604
+      256000            1775644500.0000           6936.111328     386.073395      13.708694
+      512000            3666685500.0000           7161.495117     377.600789      10.008494
+     1024000            7736910100.0000           7555.576270     378.426220       7.466509
+
+La complejidad de la función ordenación del vector en orden descendente es, aproximadamente y comprobado de forma empírica, de O(n*log(n)).
+En cuánto a las cotas, podemos observar de foma empírica como los valores de la subestimada tienden al infinito, los de la ajustada tienden 
+a un rango de valores entre 370 y 380 y los de la sobreestimada que tienden a 0. 
 
 
+Ordenación del vector (orden aleatorio)
+                                                     Subestimada    Ajustada  Sobreestimada
+           n                                      t(n) (ns)t(n)/n*1 t(n)/n*log(n)  t(n)/n^1.5
+         500               1801700.0000           3603.400000     401.905721     161.148947
+        1000               4011800.0000           4011.800000     402.557379     126.864255
+        2000               8974800.0000           4487.400000     # 409.218336     100.341314
+        4000              19228300.0000           4807.075000     401.735054      76.006529
+        8000              41221600.0000           5152.700000     397.407506      57.608937
+       16000              84549400.0000           5284.337500     378.377425      41.776356
+       32000             181960400.0000           5686.262500     379.950853      31.787174
+       64000             390544300.0000           6102.254687     382.208264      24.121280
+      128000             833954000.0000           6515.265625     384.023840      18.210721
+      256000            1853441400.0000           7240.005469     402.988556      14.309317
+      512000            4099427000.0000           8006.693359     # 422.165160      11.189694
+     1024000            9117818300.0000           8904.119434     # 445.968929       8.799156
+
+La complejidad de la función ordenación del vector en orden aleatorio es, aproximadamente y comprobado de forma empírica, de O(n*log(n)).
+En cuánto a las cotas, podemos observar de foma empírica como los valores de la subestimada tienden al infinito, los de la ajustada tienden 
+a un rango de valores entre 378 y 400 y los de la sobreestimada que tienden a 0. 
 
 
+Para intentar evitar datos anómalos, ejecutamos el código en un entorno lo más limpio posible, con el menor número de procesos en segundo plano, 
+con un número de iteraciones totales de 10.
 
-
-
-
-
+Para indicar los datos anómalos, los marcamos en las tablas de los tiempos de ejecución con el símbolo "#".
 
 
 CONCLUSIONES
-
-Después de comprobar que los algoritmos llevan al mismo resultado para cada valor de entrada, analizamos la complejidad de cada algoritmo para saber cuál es el mas óptimo,es decir, el que utiliza menor tiempo de ejecución para la misma tarea.
+ 
 Para cada algoritmo creamos varias cotas con el fin de averiguar su complejidad de manera empírica:
-- Ordenación por inserción.
+- Creación de montículo.
        - En orden ascendente. Hallamos las cotas n^0.8, n^1 y n^1.2.
-       - En orden descendente. Hallamos las cotas n^1.8, n^2 y n^2.2.
-       - En orden aleatorio. Hallamos las cotas n^1.8, n^2 y n^2.2.
+       - En orden descendente. Hallamos las cotas n^0.8, n^1 y n^1.2.
+       - En orden aleatorio. Hallamos las cotas n^0.8, n^1 y n^1.2.
 
-- Ordenación Shell.
-       - En orden ascendente. Hallamos las cotas n^1, n^1.2 y n^1.4.
-       - En orden descendente. Hallamos las cotas n^1, n^1.2 y n^1.4.
-       - En orden aleatorio. Hallamos las cotas n^1, n^1.25 y n^1.4.
+- Ordenación de un vector.
+       - En orden ascendente. Hallamos las cotas n^1, n*log(n) y n^1.5.
+       - En orden descendente. Hallamos las cotas n^1, n*log(n) y n^1.5.
+       - En orden aleatorio. Hallamos las cotas n^1, n*log(n) y n^1.5.
 
 
-Para establecer la eficiencia de cada algoritmo de forma empírica, comparamos las cotas y los tiempos de ejecución resultantes de ambos algoritmos en cada uno de los órdenes del vector.
-Deducimos de los resultados obtenidos, que el algoritmo óptimo para resolver el problema para ordenar el vector en cada caso es:
-- En orden ascendente. Resulta más eficiente el algoritmo ins_sort.
-- En orden descendente. Resulta más eficiente el algoritmo shell_sort.
-- En orden aleatorio. Resulta más eficiente el algoritmo shell_sort.
+Para establecer la eficiencia de cada algoritmo de forma empírica, comparamos las cotas y los tiempos de ejecución resultantes de ambos algoritmos 
+en cada uno de los órdenes del vector.
 
-De los datos obtenidos, comprobamos que el algoritmo shell_sort es más eficiente en 2/3 casos, siendo el caso del vector ordenado el que supera la eficiencia del algoritmo shell_sort.
+De los datos obtenidos, comprobamos que el algoritmo de creación de montículo es más eficiente que el de ordenación de un vector, ya que su complejidad es lineal mientras que la de otra es O(n) = n*log(n).
+Puede comprobarse más facilmente el crecimiento de las dos funciones en el siguiente enlace: https://m.wolframalpha.com/input?i=y+%3D+xlogx%2C++y%3Dx%5E1+%2C+x+from+1+to+100&lang=es
+Así pues, vemos que la función n*log(n) tiene un crecimiento superior que la función x^1, comprobando así que el tiempo del algoritmo que crea los montículos es sustancialmente inferior al tiempo que tarda la otra función en ordenar vectores.
+Aunque en este caso puede llegar a tener menos sentido la comparación entre los dos algoritmos, más hallá de resaltar su complejidad empírica, ya que realizan funciones diferentes.

@@ -7,7 +7,8 @@ tamanos_n = [500, 1000, 2000, 4000, 8000, 16000, 32000, 64000, 128000, 256000, 5
 umbral_confianza = 1000                                          # El tiempo en us (microsegundos) en el cual no nos podemos fiar de los valores obtenidos y habrá que realizar varias iteraciones y hacer el promedio de las mismas para asegurarnos de obtener valores correctos.
 repeticiones_umbral = 1000                                         # Número iteraciones una vez superado el umbral de tiempo
 
-#-------------------------------------------------------------------------------------------------------------------------
+#Función complejidad
+#________________________________________________________________________________________________________________________________________________________________________________________________________________________________
 def test_tiempo_complejidad(alg, orden, exp1, exp2, exp3):
     '''
     Permite comprobar el tiempo de ejecución del algoritmo para cada caso del vector y además nos ayuda a demostrar su complejidad de manera empírica gracias al cálculo del tiempo de ejecución entre las cotas.
@@ -26,12 +27,13 @@ def test_tiempo_complejidad(alg, orden, exp1, exp2, exp3):
         else:
             print(" ",cotas_ajustadas(alg, n, tiempo_ejecucion, exp1, exp2, exp3))    # Imprimimos el tiempo de ejecución normal
 
-
+#______________________________________________________________________________________________________________________________________________________________________________________________________________________________
+#Funciones para probar el correcto funcionamiento de las implementaciones
 def probar_operaciones_monticulo(n,orden):
     print("Prueba con vector",orden)
 
     # Crear un montículo
-    print("Creamos el montículo")
+    print("Creamos el montículo vacio")
     mi_monticulo = Monticulo()
     print(mi_monticulo)
     print("")
@@ -67,8 +69,8 @@ def ordenado(v):
         if v[i] > v[i + 1]:
             return False
     return True
-
-
+#________________________________________________________________________________________________________________________________________
+#Funciones que imprimen las tablas
 def imprimir_complejidad_crearMonticulo(alg, orden, exp1, exp2, exp3):
     print(f"{'Subestimada':>64}{'Ajustada':>12}{'Sobreestimada':>15}")
     print(f"{'n':>12}\t\t{'t(n) (ns)':>15}{'t(n)/n^'+str(exp1):>22}{'t(n)/n^'+str(exp2):>15}{'t(n)/n^'+str(exp3):>15}")
@@ -77,6 +79,6 @@ def imprimir_complejidad_crearMonticulo(alg, orden, exp1, exp2, exp3):
  
 def imprimir_complejidad_ordenacionPorMonticulos(alg, orden, exp1=None, exp2=None, exp3=None):
     print(f"{'Subestimada':>64}{'Ajustada':>12}{'Sobreestimada':>15}")
-    print(f"{'n':>12}\t\t{'t(n) (ns)':>15}{'t(n)/n*1'}{'t(n)/n^log(n)'}{'t(n)/n^2'}")
+    print(f"{'n':>12}\t\t{'t(n) (ns)':>15}{'t(n)/n^1':>22}{'t(n)/n*log(n)':>15}{'t(n)/n^1.5':>15}")
 
     test_tiempo_complejidad(alg, orden, exp1, exp2, exp3)
