@@ -10,6 +10,7 @@ class Monticulo:
         return f"Tamaño montículo: {self.Tamano_monticulo}, Vector montículo: {self.Vector_monticulo}"
 
     def crearMonticulo(self, v):
+        mi_monticulo = Monticulo()
         z = deepcopy(v)
         self.Vector_monticulo = z
         self.Tamano_monticulo = len(v)
@@ -64,24 +65,4 @@ def ordenacionPorMonticulos(V):
         mi_monticulo.quitarMenor()
 
 
-# L=[]
-# def ordenacionPorMonticulos(V):
-#     mi_monticulo = Monticulo()
-#     mi_monticulo.crearMonticulo(V)
-
-#     for i in range(len(V)):
-#         #print(i)
-#         menor = mi_monticulo.consultarMenor()
-#         L.append(menor)
-        
-#         if menor is not None:
-#             mi_monticulo.quitarMenor()
-#             print(V)
-#             #print(V)
-#         else:
-#             break  # Agregar una condición para salir si no hay más elementos en el montículo
-
 # Ejemplo de uso
-V = [9, 5, 6, 2, 3]
-ordenacionPorMonticulos(V)
-print("Arreglo ordenado:", V)

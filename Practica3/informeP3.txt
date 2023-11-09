@@ -1,12 +1,16 @@
-#Repetir K 1000 veces, en la función de calcular promedio (debes repetir 1000 veces la ejecución)
-#Hacer dos funciones, una que imprima las tablas y otra que la calculé (que calcule el tiempo_de ejecución)
 
 Óscar Vilela Rodríguez y Ainhoa de Diego Silva 
 oscar.vilela.rodriguez@udc.es; ainhoa.dediego.silva@udc.es
 
 INTRODUCCIÓN
 
-En esta tercera práctica analizamos y demostramos de manera empírica la fiabilidad, tiempo de ejecución, y complejidad de de dos algoritmos propuestos: crearMonticulo, y ordenacionPorMonticulos que realiza la ordenación ascedente de un vector, que se inizializa de tres formas posibles; ascedente, descendente y aleatorio. Ambas funciones requieren la implementación de un monticulo de mínimos para su ejecución por lo que hubo que implementar una clase montículo con los métodos de crearMonticulo, consultarMenor, quitarMenor y __hundir. Para ello, creamos un programa en Python, compuesto de varios archivos de código: 
+En esta tercera práctica analizamos y demostramos de manera empírica la fiabilidad, tiempo de ejecución, y 
+complejidad de de dos algoritmos propuestos: crearMonticulo, y ordenacionPorMonticulos que realiza la ordenación ascedente de un 
+vector, que se inizializa de tres formas posibles; ascedente, descendente y aleatorio. 
+
+Ambas funciones requieren la implementación de un monticulo de mínimos para su ejecución por lo que hubo que implementar una 
+clase montículo con los métodos de crearMonticulo, consultarMenor, quitarMenor y __hundir. 
+Para ello, creamos un programa en Python, compuesto de varios archivos de código: 
 
 Algoritmos.py 
 FuncionesTests.py 
@@ -26,44 +30,163 @@ Almacenamiento 1TB SSD M.2 2280 PCIe 3.0x4 NVMe
 Python 3.9.12
 
 *Este programa en específico se ejecutó en el procesador (CPU) por lo que la tarjeta gráfica (GPU) no es necesaria para su ejecución. 
-*Todas las medidas de tiempo han sido tomadas en nanosegundos (ns), mediante la función 	time.perf_counter_ns() , y mostradas por pantalla a su vez en nanosegundos. 
+*Todas las medidas de tiempo han sido tomadas en nanosegundos (ns), mediante la función 	time.perf_counter_ns(), y 
+ mostradas por pantalla a su vez en nanosegundos. 
+
 *Todas las funciones aquí comentadas están descritas en mayor profundidad en el código. 
 
 
 Una vez aclaradas las cuestiones básicas, explicaremos paso a paso, el proceso que nos llevó a las conclusiones finales de este informe.
 
+
+
+
+
+
 DESARRROLLO DE LAS PRUEBAS
 
-1º Creamos el archivo Algoritmos.py en el que definimos las funciones de los algoritmos a comprobar.
+
+
+1º Creamos el archivo Algoritmos.py en el que definimos la clase montículo, que es una estructura de datos (de mínimos en este caso)
+que se utiliza para organizar y gestionar un conjunto de elementos de tal manera que se pueda acceder eficientemente al elemento más 
+pequeño en cualquier momento. 
+
+Además, definimos una función fuera de la clase para facilitar la creación de montículos.
 
 class Monticulo:
+
     def crearMonticulo(self, v):
+
     def consultarMenor(self):
+
     def quitarMenor(self):
+
     def __hundir(self, i):
 
 def ordenacionPorMonticulos(V):
+
+Dentro de esta clase, definimos varios métodos para operar sobre el objeto Montículo.
+
+def crearMonticulo(self, v: array): 
+
+       Esta método se encarga de crear un montículo a partir de un array dado (v) y ordenarlo a través del 
+       método _hundir (self, i) para poder trabajar con el montículo ya listo.
+
+def consultarMenor(self):
+
+       Este método comprueba si el montículo no tiene elementos, es decir, si esta vacío o si tiene algún elemento.
+       En el caso de tener algún elemento, devuelve el elemento en la primera posición.
+
+def quitarMenor(self): --> menor: int
+
+       Este método elimina y devuelve el elemento menor del montículo. 
+       Además, se encarga de formatear el montículo para que quede listo para operar con él.
+
+def __hundir(self, i):
+
+       El método ejecuta una de las operaciones básicas que incluye el montículo. Es el encargado de restaurar la propiedad del 
+       montículo a la hora de crearlo y ordenarlo para poder operar con él o después de que un elemento se haya eliminado y 
+       reemplazado por otro en la raíz del montículo.
+
+Además, fuera de la clase, definimos la siguiente función.
+
+def ordenacionPorMonticulos(V):
+
+       Esta función permite una automatización de la creación de montículos dado un array ordenado de forma ascendente,
+       descendente o aleatorio.
+
+
+
 
 2º Comprobamos el correcto funcionamiento de los dos algoritmos y la complejidad algorítmica de forma empírica:
 
 Para ello creamos el archivo FuncionesTests.py, que a su vez utiliza otras funciones definidas en FuncionesAuxiliares.py, donde definimos las funciones “test”: 
 
 def probar_operaciones_monticulo(n,orden):
+
+      La función se utiliza para probar las operaciones básicas de un montículo, incluyendo la creación del montículo,
+      la inserción de elementos y la eliminación del elemento más pequeño, con el propósito de demostrar cómo funciona 
+      un montículo en la práctica.
+
 def probar_algoritmo_ordenación(n,orden):
 
+        La función se utiliza para probar y demostrar el funcionamiento del algoritmo de ordenación por montículos en un vector, 
+        mostrando cómo se ordena el vector al final de la ejecución.
 
 
+Test 1 (Casos de Prueba):
+Prueba con vector ascendente
+Creamos el montículo
+Tamaño montículo: 0, Vector montículo: []
+
+Creamos el montículo de mínimos con el vector ascendente
+Tamaño montículo: 5, Vector montículo: [1, 2, 3, 4, 5] 
+
+Eliminamos el menor en cada iteración
+El menor elemento eliminado es: 1
+Tamaño montículo: 4, Vector montículo: [2, 4, 3, 5]
+El menor elemento eliminado es: 2
+Tamaño montículo: 3, Vector montículo: [3, 4, 5]
+El menor elemento eliminado es: 3
+Tamaño montículo: 2, Vector montículo: [4, 5]
+El menor elemento eliminado es: 4
+Tamaño montículo: 1, Vector montículo: [5]
+El menor elemento eliminado es: 5
+Tamaño montículo: 0, Vector montículo: []
+________________________________________________________
+Prueba con vector descendente
+Creamos el montículo
+Tamaño montículo: 0, Vector montículo: []
+
+Creamos el montículo de mínimos con el vector descendente
+Tamaño montículo: 5, Vector montículo: [1, 2, 3, 5, 4] 
+
+Eliminamos el menor en cada iteración
+El menor elemento eliminado es: 1
+Tamaño montículo: 4, Vector montículo: [2, 4, 3, 5]
+El menor elemento eliminado es: 2
+Tamaño montículo: 3, Vector montículo: [3, 4, 5]
+El menor elemento eliminado es: 3
+Tamaño montículo: 2, Vector montículo: [4, 5]
+El menor elemento eliminado es: 4
+Tamaño montículo: 1, Vector montículo: [5]
+El menor elemento eliminado es: 5
+Tamaño montículo: 0, Vector montículo: []
+________________________________________________________
+Prueba con vector aleatorio
+Creamos el montículo
+Tamaño montículo: 0, Vector montículo: []
+
+Creamos el montículo de mínimos con el vector aleatorio
+Tamaño montículo: 5, Vector montículo: [-5, -5, 4, 0, 2] 
+
+Eliminamos el menor en cada iteración
+El menor elemento eliminado es: -5
+Tamaño montículo: 4, Vector montículo: [-5, 0, 4, 2]
+El menor elemento eliminado es: -5
+Tamaño montículo: 3, Vector montículo: [0, 2, 4]
+El menor elemento eliminado es: 0
+Tamaño montículo: 2, Vector montículo: [2, 4]
+El menor elemento eliminado es: 2
+Tamaño montículo: 1, Vector montículo: [4]
+El menor elemento eliminado es: 4
+Tamaño montículo: 0, Vector montículo: []
+________________________________________________________
+Vector ascendente sin ordenar: [1, 2, 3, 4, 5] True
+Arreglo ascendente ordenado: [1, 2, 3, 4, 5] True
+Vector descendente sin ordenar: [5, 4, 3, 2, 1] False
+Arreglo descendente ordenado: [1, 2, 3, 4, 5] True
+Vector aleatorio sin ordenar: [1, 3, -2, -1, -2] False
+Arreglo aleatorio ordenado: [-2, -2, -1, 1, 3] True
 
 
+3º Para comprobar el tiempo de ejecución de los dos algoritmos (el de creación y ordenación), creamos dos funciones funciones 
+test_tiempo_complejidad_crearMonticulo(orden, exp1, exp2, exp3): y test_tiempo_complejidad_ordenacionPorMonticulos(orden) que calculan
+el tiempo y nos permite medir la complejidad de manera empírica gracias a las cotas.
 
-
-
-
-
-
-3º Para comprobar el tiempo de ejecución de los dos algoritmos (el de creación y ordenación), creamos dos funciones funciones test_tiempo_complejidad_crearMonticulo(orden, exp1, exp2, exp3): y test_tiempo_complejidad_ordenacionPorMonticulos(orden) que calculan el tiempo y nos permite medir la complejidad de manera empírica gracias a las cotas.
 Utilizamos un vector de progresión geométrica 2 porque nos ayuda a visualizar hacia qué valor de tiempo tiende el algoritmo.
-Los asteriscos en las tablas de datos simbolizan que esos valores están por debajo del umbral de confianza, por lo que utilizamos el método del promedio para tener una medida más precisa.
+Los asteriscos en las tablas de datos simbolizan que esos valores están por debajo del umbral de confianza, por lo que utilizamos 
+el método del promedio para tener una medida más precisa.
 
 
 
@@ -79,7 +202,7 @@ Los asteriscos en las tablas de datos simbolizan que esos valores están por deb
 
 CONCLUSIONES
 
-Después de comprobar que los algoritmos llevan al mismo resultado para cada  valor de entrada, analizamos la complejidad de cada algoritmo para saber cuál es el mas óptimo,es decir, el que utiliza menor tiempo de ejecución para la misma tarea.
+Después de comprobar que los algoritmos llevan al mismo resultado para cada valor de entrada, analizamos la complejidad de cada algoritmo para saber cuál es el mas óptimo,es decir, el que utiliza menor tiempo de ejecución para la misma tarea.
 Para cada algoritmo creamos varias cotas con el fin de averiguar su complejidad de manera empírica:
 - Ordenación por inserción.
        - En orden ascendente. Hallamos las cotas n^0.8, n^1 y n^1.2.
