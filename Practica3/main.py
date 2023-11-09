@@ -3,54 +3,19 @@ from FuncionesAuxiliares import *
 from FuncionesTests import *
 
 
-# # Crear un montículo
-# mi_monticulo = Monticulo()
-# print(mi_monticulo)
-
-# # Agregar elementos al montículo
-# elementos = [9, 5, 6, 2, 3]
-# mi_monticulo.crear_Monticulo(elementos)
-# print(mi_monticulo)
-
-# menor_eliminado = mi_monticulo.quitarMenor()
-# print(f"El menor elemento eliminado es: {menor_eliminado}")
-# print(mi_monticulo)
-
-# menor = mi_monticulo.quitarMenor()
-# print(f"El menor elemento eliminado es: {menor}")
-# print(mi_monticulo)
-
-# menor_nuevo = mi_monticulo.quitarMenor()
-# print(f"El menor elemento eliminado es: {menor_nuevo}")
-# print(mi_monticulo)
-
-# menor_eliminado = mi_monticulo.quitarMenor()
-# print(f"El menor elemento eliminado es: {menor_eliminado}")
-# print(mi_monticulo)
-
-# menor_eliminado = mi_monticulo.quitarMenor()
-# print(f"El menor elemento eliminado es: {menor_eliminado}")
-# print(mi_monticulo)
-
-# menor_eliminado = mi_monticulo.quitarMenor()
-# print(f"El menor elemento eliminado es: {menor_eliminado}")
-# print(mi_monticulo)
-
-# menor_eliminado = mi_monticulo.quitarMenor()
-# print(f"El menor elemento eliminado es: {menor_eliminado}")
-# print(mi_monticulo)
-
-# menor_eliminado = mi_monticulo.quitarMenor()
-# print(f"El menor elemento eliminado es: {menor_eliminado}")
-# print(mi_monticulo)
-
-
 # Importa las funciones desde los otros archivos
 from FuncionesTests import *
 
 def test(iteraciones):                  # Función que prueba los algoritmos 
-    # print("\nTest 1 (Casos de Prueba):")
-    # probar_algoritmos(10)
+    print("\nTest 1 (Casos de Prueba):")
+    probar_operaciones_monticulo(5,"ascendente")
+    probar_operaciones_monticulo(5,"descendente")
+    probar_operaciones_monticulo(5,"aleatorio")
+    
+    probar_algoritmo_ordenación(5,"ascendente")
+    probar_algoritmo_ordenación(5,"descendente")
+    probar_algoritmo_ordenación(5,"aleatorio")
+    
 
     for i in range(iteraciones):        # Bucle para comprobar la eficacia de los algoritmos
         print(f"\nTest 2 (Análisis de Complejidad): (Iteración nº {i+1})")

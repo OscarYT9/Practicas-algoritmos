@@ -9,7 +9,7 @@ class Monticulo:
     def __str__(self):
         return f"Tamaño montículo: {self.Tamano_monticulo}, Vector montículo: {self.Vector_monticulo}"
 
-    def crear_Monticulo(self, v):
+    def crearMonticulo(self, v):
         z = deepcopy(v)
         self.Vector_monticulo = z
         self.Tamano_monticulo = len(v)
@@ -17,7 +17,7 @@ class Monticulo:
         for i in range(self.Tamano_monticulo // 2, -1, -1):  # Modifica el rango para incluir 0
             self.__hundir(i)
 
-    def consultar_menor(self):
+    def consultarMenor(self):
         if self.Tamano_monticulo == 0:
             return None
 
@@ -27,7 +27,7 @@ class Monticulo:
         if self.Tamano_monticulo == 0:
             return None
 
-        menor = self.consultar_menor()
+        menor = self.consultarMenor()
         #print(self)
         self.Vector_monticulo[0] = self.Vector_monticulo[self.Tamano_monticulo - 1]  # Modifica el índice
         #print(self)
@@ -57,21 +57,21 @@ class Monticulo:
 
 def ordenacionPorMonticulos(V):
     mi_monticulo = Monticulo()
-    mi_monticulo.crear_Monticulo(V)
+    mi_monticulo.crearMonticulo(V)
 
     for i in range(len(V)):
-        V[i] = mi_monticulo.consultar_menor()
+        V[i] = mi_monticulo.consultarMenor()
         mi_monticulo.quitarMenor()
 
 
 # L=[]
 # def ordenacionPorMonticulos(V):
 #     mi_monticulo = Monticulo()
-#     mi_monticulo.crear_Monticulo(V)
+#     mi_monticulo.crearMonticulo(V)
 
 #     for i in range(len(V)):
 #         #print(i)
-#         menor = mi_monticulo.consultar_menor()
+#         menor = mi_monticulo.consultarMenor()
 #         L.append(menor)
         
 #         if menor is not None:

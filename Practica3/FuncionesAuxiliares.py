@@ -27,7 +27,7 @@ def calcular_tiempo_ejecucion(n, orden):    # Medir el tiempo de ejecución de u
     vector = inicializar(n,orden)  # Puedes usar el vector aleatorio como entrada
 
     inicio = time.perf_counter_ns()
-    mi_monticulo.crear_Monticulo(vector)
+    mi_monticulo.crearMonticulo(vector)
     fin = time.perf_counter_ns()
 
     tiempo_ejecucion = fin - inicio
@@ -45,7 +45,7 @@ def calcular_tiempo_promedio(repeticiones_umbral, n, orden):    # Realizar repet
    for _ in range(repeticiones_umbral):         # Inicializa un vector y ejecuta el algoritmo de ordenación en ese vector repeticiones_umbral veces
       mi_monticulo = Monticulo()
       vector = inicializar(n,orden)         # Ejecuta el algoritmo en esa iteración (n) un numero k de veces para cerciorarte de que el algoritmo es correcto, por eso tienes que pasarle a esta función todo lo necesario para volver a ejecutar esa misma ejecución n numero de veces, medir su tiempo y hacer la media del tiempo de las diferentes ejecuciones
-      mi_monticulo.crear_Monticulo(vector)       
+      mi_monticulo.crearMonticulo(vector)       
    tb = time.perf_counter_ns()                  # Tiempo después de finalizar todas las ejecuciones
 
    t1 = tb - ta                                 # Tiempo total de la ejecución = Tiempo al finalizar todas las ejecuciones - Tiempo antes de comenzar la ejecución

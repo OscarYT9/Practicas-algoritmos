@@ -52,3 +52,45 @@ def test_tiempo_complejidad_ordenacionPorMonticulos(orden):
 
         else:
             print(" ",cotas_ajustadas_ordenacionPorMonticulos(n, tiempo_ejecucion))    # Imprimimos el tiempo de ejecución normal
+
+
+def probar_operaciones_monticulo(n,orden):
+    print("Prueba con vector",orden)
+
+    # Crear un montículo
+    print("Creamos el montículo")
+    mi_monticulo = Monticulo()
+    print(mi_monticulo)
+    print("")
+
+    print("Creamos el montículo de mínimos con el vector",orden)
+    # Agregar lementos al montículo
+    vector = inicializar(n,orden)
+    mi_monticulo.crearMonticulo(vector)
+    print(mi_monticulo,"\n")
+
+    print("Eliminamos el menor en cada iteración")
+    for i in range(0,n):
+        menor_eliminado = mi_monticulo.quitarMenor()
+        print(f"El menor elemento eliminado es: {menor_eliminado}")
+        print(mi_monticulo)
+    print("________________________________________________________")
+
+
+def probar_algoritmo_ordenación(n,orden):
+    V = inicializar(n,orden)
+    print("Vector",orden, "sin ordenar:",V, ordenado(V))
+    ordenacionPorMonticulos(V)
+    print("Arreglo",orden, "ordenado:", V, ordenado(V))
+
+
+def ordenado(v):
+    '''
+    Comprueba si el vector esta ordenado ascendentemente y devuelve True o False dependiendo del caso.
+    True, la lista está ordenada ascendentemente.
+    False, la lista no está ordenada ascendentemente.
+    '''
+    for i in range(len(v) - 1):
+        if v[i] > v[i + 1]:
+            return False
+    return True
