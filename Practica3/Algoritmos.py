@@ -28,9 +28,12 @@ class Monticulo:
             return None
 
         menor = self.consultar_menor()
+        #print(self)
         self.Vector_monticulo[0] = self.Vector_monticulo[self.Tamano_monticulo - 1]  # Modifica el índice
+        #print(self)
         self.Tamano_monticulo -= 1
         self.Vector_monticulo.pop()
+        #print(self)
         self.__hundir(0)  # Modifica el índice
 
         return menor

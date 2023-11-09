@@ -8,7 +8,7 @@ umbral_confianza = 1000                                          # El tiempo en 
 repeticiones_umbral = 1000                                         # Número iteraciones una vez superado el umbral de tiempo
 
 #-------------------------------------------------------------------------------------------------------------------------
-def test_tiempo_complejidad_crearMonticulo(exp1, exp2, exp3):
+def test_tiempo_complejidad_crearMonticulo(orden, exp1, exp2, exp3):
     '''
     Permite comprobar el tiempo de ejecución del algoritmo para cada caso del vector y además nos ayuda a demostrar su complejidad de manera empírica gracias al cálculo del tiempo de ejecución entre las cotas.
     '''
@@ -20,18 +20,18 @@ def test_tiempo_complejidad_crearMonticulo(exp1, exp2, exp3):
     # Iteramos sobre diferentes tamaños de entrada
     for n in tamanos_n:
         
-        tiempo_ejecucion = calcular_tiempo_ejecucion(n)  # Calculamos el tiempo de ejecución del algoritmo para ese vector
+        tiempo_ejecucion = calcular_tiempo_ejecucion(n, orden)  # Calculamos el tiempo de ejecución del algoritmo para ese vector
 
         if tiempo_ejecucion < umbral_confianza * 1000:                          # Comprobamos si el tiempo de ejecución está por debajo de un umbral de confianza (y pasamos el umbral de us a ns)
 
-            tiempo_promedio = calcular_tiempo_promedio(repeticiones_umbral, n)                           # Calculamos el tiempo promedio para varias repeticiones
+            tiempo_promedio = calcular_tiempo_promedio(repeticiones_umbral, n, orden)                           # Calculamos el tiempo promedio para varias repeticiones
             print("*",cotas_ajustadas(n, tiempo_promedio, exp1, exp2, exp3),f"(promedio de {repeticiones_umbral} repeticiones)")    # Imprimimos el resultado con un asterisco para indicar el promedio
 
         else:
             print(" ",cotas_ajustadas(n, tiempo_ejecucion, exp1, exp2, exp3))    # Imprimimos el tiempo de ejecución normal
 
 
-def test_tiempo_complejidad_ordenacionPorMonticulos():
+def test_tiempo_complejidad_ordenacionPorMonticulos(orden):
     '''
     Permite comprobar el tiempo de ejecución del algoritmo para cada caso del vector y además nos ayuda a demostrar su complejidad de manera empírica gracias al cálculo del tiempo de ejecución entre las cotas.
     '''
@@ -43,11 +43,11 @@ def test_tiempo_complejidad_ordenacionPorMonticulos():
     # Iteramos sobre diferentes tamaños de entrada
     for n in tamanos_n:
         
-        tiempo_ejecucion = calcular_tiempo_ejecucion_ordenacionPorMonticulos(n)  # Calculamos el tiempo de ejecución del algoritmo para ese vector
+        tiempo_ejecucion = calcular_tiempo_ejecucion_ordenacionPorMonticulos(n, orden)  # Calculamos el tiempo de ejecución del algoritmo para ese vector
 
         if tiempo_ejecucion < umbral_confianza * 1000:                          # Comprobamos si el tiempo de ejecución está por debajo de un umbral de confianza (y pasamos el umbral de us a ns)
 
-            tiempo_promedio = calcular_tiempo_promedio_ordenacionPorMonticulos(repeticiones_umbral, n)                           # Calculamos el tiempo promedio para varias repeticiones
+            tiempo_promedio = calcular_tiempo_promedio_ordenacionPorMonticulos(repeticiones_umbral, n, orden)                           # Calculamos el tiempo promedio para varias repeticiones
             print("*",cotas_ajustadas_ordenacionPorMonticulos(n, tiempo_promedio),f"(promedio de {repeticiones_umbral} repeticiones)")    # Imprimimos el resultado con un asterisco para indicar el promedio
 
         else:
