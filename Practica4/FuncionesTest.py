@@ -36,26 +36,27 @@ def test_matrices_minimas():
      print("Calculamos la matriz de adyacencia de caminos de peso mínimo para una matriz aleatoria:")
      matriz_distancias_minimas(a)
     
-
-tamanos_n = [10,20,40,80,640]   # Lista con los tamaños del vector aleatorio, es una progresión geométrica de razón 2, si se quisiese se podría automatizar su creación también, en este caso no lo hacemos ya que con esos valores deberia ser suficiente para comprobar la complejidad algorítmica
+#50,100,150,200,...1000
+#10, 20, 40, 80, 160, 320, 640
+tamanos_n = [2, 4, 8, 16, 32, 64, 128, 256, 512]   # Lista con los tamaños del vector aleatorio, es una progresión geométrica de razón 2, si se quisiese se podría automatizar su creación también, en este caso no lo hacemos ya que con esos valores deberia ser suficiente para comprobar la complejidad algorítmica
 umbral_confianza = 1000                                          # El tiempo en us (microsegundos) en el cual no nos podemos fiar de los valores obtenidos y habrá que realizar varias iteraciones y hacer el promedio de las mismas para asegurarnos de obtener valores correctos.
 repeticiones_umbral = 1000                                         # Número iteraciones una vez superado el umbral de tiempo
 #Función complejidad
 #________________________________________________________________________________________________________________________________________________________________________________________________________________________________
-def test_tiempo_complejidad(alg, orden, exp1, exp2, exp3):
+def test_tiempo_complejidad(exp1, exp2, exp3):
      '''
      Permite comprobar el tiempo de ejecución del algoritmo para cada caso del vector y además nos ayuda a demostrar su complejidad de manera empírica gracias al cálculo del tiempo de ejecución entre las cotas.
      '''
      
      # Iteramos sobre diferentes tamaños de entrada
      for n in tamanos_n:
-
-         tiempo_ejecucion = calcular_tiempo_ejecucion(alg ,n, orden)  # Calculamos el tiempo de ejecución del algoritmo para ese vector
+         matriz = matrizAleatoria(n)
+         tiempo_ejecucion = calcular_tiempo_ejecucion(matriz)  # Calculamos el tiempo de ejecución del algoritmo para ese vector
 
          if tiempo_ejecucion < umbral_confianza * 1000:                          # Comprobamos si el tiempo de ejecución está por debajo de un umbral de confianza (y pasamos el umbral de us a ns)
 
-             tiempo_promedio = calcular_tiempo_promedio(alg ,repeticiones_umbral, n, orden)                           # Calculamos el tiempo promedio para varias repeticiones
-             print("*",cotas_ajustadas(alg, n, tiempo_promedio, exp1, exp2, exp3),f"(promedio de {repeticiones_umbral} repeticiones)")    # Imprimimos el resultado con un asterisco para indicar el promedio
+             tiempo_promedio = calcular_tiempo_promedio(repeticiones_umbral, n)                           # Calculamos el tiempo promedio para varias repeticiones
+             print("*",cotas_ajustadas(n, tiempo_promedio, exp1, exp2, exp3),f"(promedio de {repeticiones_umbral} repeticiones)")    # Imprimimos el resultado con un asterisco para indicar el promedio
 
          else:
-             print(" ",cotas_ajustadas(alg, n, tiempo_ejecucion, exp1, exp2, exp3))    # Imprimimos el tiempo de ejecución normal
+             print(" ",cotas_ajustadas(n, tiempo_ejecucion, exp1, exp2, exp3))    # Imprimimos el tiempo de ejecución normal
