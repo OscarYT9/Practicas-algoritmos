@@ -79,6 +79,6 @@ def imprimir_complejidad_crearMonticulo(alg, orden, exp1, exp2, exp3):
  
 def imprimir_complejidad_ordenacionPorMonticulos(alg, orden, exp1=None, exp2=None, exp3=None):
     print(f"{'Subestimada':>64}{'Ajustada':>12}{'Sobreestimada':>15}")
-    print(f"{'n':>12}\t\t{'t(n) (ns)':>15}{'t(n)/n^1':>22}{'t(n)/n*log(n)':>15}{'t(n)/n^1.5':>15}")
+    print(f"{'n':>12}\t\t{'t(n) (ns)':>15}{'t(n)/n^1':>22}{'t(n)/n*log(n)':>15}{'t(n)/n^1.3':>15}")
 
     test_tiempo_complejidad(alg, orden, exp1, exp2, exp3)

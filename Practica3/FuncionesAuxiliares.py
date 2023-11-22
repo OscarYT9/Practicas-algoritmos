@@ -113,7 +113,7 @@ def cotas_ajustadas(alg, n, tiempo, exp1, exp2, exp3):   # Calcula las cotas
         # Calcula las cotas subestimada, ajustada y sobrestimada en función de los parámetros dados
         cota_subestimada = tiempo / (n ** 1)  # Utiliza log base 2 para n log(n)
         cota_ajustada = tiempo / (n * math.log(n, 2))
-        cota_sobrestimada = tiempo / (n ** 1.5) # Otra cota posible sería 1.3, se eligió 1.5 para ver más claramente los valores
+        cota_sobrestimada = tiempo / (n ** 1.3) # Otra cota posible sería 1.3, se eligió 1.5 para ver más claramente los valores
 
     # Devuelve una cadena formateada con las cotas y el tamaño del vector
     return f"{n:>10}\t\t{tiempo:>15.4f}       {cota_subestimada:>15.6f}{cota_ajustada:>15.6f}{cota_sobrestimada:>15.6f}"

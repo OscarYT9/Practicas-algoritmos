@@ -249,41 +249,43 @@ Creación montículo (orden aleatorio)
 La complejidad de la función crear montículo en orden aleatorio es, aproximadamente y comprobado de forma empírica, de O(n^1).
 En cuánto a las cotas, podemos observar de foma empírica como los valores de la subestimada tienden al infinito, los de la ajustada tienden 
 a un rango de valores entre 680 y 712 y los de la sobreestimada que tienden a 0.
-     
+
      Ordenación del vector (orden ascendente)
-                                                     Subestimada  Ajustada  Sobreestimada
-           n                  t(n) (ns)           t(n)/n*1        t(n)/n*log(n)  t(n)/n^1.5
-         500               1609900.0000           3219.800000     359.120842     143.993833
-        1000               3885400.0000           3885.400000     # 389.873982     122.867136
-        2000               8213400.0000           4106.700000     # 374.501257      91.828604
-        4000              18624500.0000           4656.125000     # 389.119918      73.619800
-        8000              38253200.0000           4781.650000     # 368.789878      53.460472
-       16000              79852400.0000           4990.775000     357.357303      39.455541
-       32000             169625600.0000           5300.800000     354.194601      29.632373
-       64000             362582100.0000           5665.345312     354.842907      22.394244
-      128000             764423900.0000           5972.061719     352.006227      16.692420
-      256000            1626838500.0000           6354.837891     353.718924      12.559851
-      512000            3482162200.0000           6801.098047     358.598302       9.504823
-     1024000            7321673000.0000           7150.071289     358.116225       7.065785
+                                                     Subestimada    Ajustada  Sobreestimada
+           n                  t(n) (ns)              t(n)/n^1  t(n)/n*log(n)     t(n)/n^1.3
+         500               1803700.0000           3607.400000     # 402.351862     559.117776
+        1000               3632800.0000           3632.800000     364.527256     457.342424
+        2000               8261900.0000           4130.950000     # 376.712681     422.416564
+        4000              18361400.0000           4590.350000     # 383.622995     381.265759
+        8000              38677100.0000           4834.637500     # 372.876595     326.164673
+       16000              81906200.0000           5119.137500     366.548516     280.518043
+       32000             172649300.0000           5395.290625     360.508378     240.142955
+       64000             366092100.0000           5720.189062     358.277988     206.802789
+      128000             767265300.0000           5994.260156     353.314651     176.024288
+      256000            1663653600.0000           6498.646875     361.723528     155.006871
+      512000            3506412000.0000           6848.460938     361.095583     132.681996
+     1024000            7361175900.0000           7188.648340     360.048383     113.124651
 
 La complejidad de la función ordenación del vector en orden ascendente es, aproximadamente y comprobado de forma empírica, de O(n*log(n)).
 En cuánto a las cotas, podemos observar de foma empírica como los valores de la subestimada tienden al infinito, los de la ajustada tienden 
 a un rango de valores entre 350 y 360 y los de la sobreestimada que tienden a 0.   
      Ordenación del vector (orden descendente)
+
+Ordenación del vector (orden descendente)
                                                      Subestimada    Ajustada  Sobreestimada
-           n                                      t(n) (ns)t(n)/n*1 t(n)/n*log(n) t(n)/n^1.5
-         500               1908700.0000           3817.400000     # 425.774241     170.719318
-        1000               4058500.0000           4058.500000     # 407.243412     128.341039
-        2000               9296700.0000           4648.350000     # 423.895809     103.940266
-        4000              19910500.0000           4977.625000     # 415.988194      78.703162
-        8000              41508300.0000           5188.537500     # 400.171512      58.009613
-       16000              87536700.0000           5471.043750     # 391.746259      43.252399
-       32000             183489000.0000           5734.031250     383.142717      32.054209
-       64000             396089100.0000           6188.892187     387.634712      24.463744
-      128000             823828000.0000           6436.156250     379.360962      17.989604
-      256000            1775644500.0000           6936.111328     386.073395      13.708694
-      512000            3666685500.0000           7161.495117     377.600789      10.008494
-     1024000            7736910100.0000           7555.576270     378.426220       7.466509
+           n                  t(n) (ns)              t(n)/n^1  t(n)/n*log(n)     t(n)/n^1.3
+         500               1847800.0000           3695.600000     # 412.189261     572.788061
+        1000               4037900.0000           4037.900000     # 405.176340     508.341492
+        2000               8989700.0000           4494.850000     # 409.897722     459.627711
+        4000              20167100.0000           5041.775000     # 421.349314     418.760262
+        8000              42286700.0000           5285.837500     # 407.675879     356.604494
+       16000              88047200.0000           5502.950000     # 394.030861     301.550166
+       32000             188811200.0000           5900.350000     # 394.255983     262.623014
+       64000             389540100.0000           6086.564062     381.225498     220.048395
+      128000             822673100.0000           6427.133594     378.829147     188.735822
+      256000            1731898300.0000           6765.227734     376.561781     161.365405
+      512000            3630995200.0000           7091.787500     373.925349     137.396201
+     1024000            7759153300.0000           7577.298145     379.514175     119.240665
 
 La complejidad de la función ordenación del vector en orden descendente es, aproximadamente y comprobado de forma empírica, de O(n*log(n)).
 En cuánto a las cotas, podemos observar de foma empírica como los valores de la subestimada tienden al infinito, los de la ajustada tienden 
@@ -292,23 +294,23 @@ a un rango de valores entre 370 y 380 y los de la sobreestimada que tienden a 0.
 
 Ordenación del vector (orden aleatorio)
                                                      Subestimada    Ajustada  Sobreestimada
-           n                                      t(n) (ns)t(n)/n*1 t(n)/n*log(n)  t(n)/n^1.5
-         500               1801700.0000           3603.400000     401.905721     161.148947
-        1000               4011800.0000           4011.800000     402.557379     126.864255
-        2000               8974800.0000           4487.400000     # 409.218336     100.341314
-        4000              19228300.0000           4807.075000     401.735054      76.006529
-        8000              41221600.0000           5152.700000     397.407506      57.608937
-       16000              84549400.0000           5284.337500     378.377425      41.776356
-       32000             181960400.0000           5686.262500     379.950853      31.787174
-       64000             390544300.0000           6102.254687     382.208264      24.121280
-      128000             833954000.0000           6515.265625     384.023840      18.210721
-      256000            1853441400.0000           7240.005469     402.988556      14.309317
-      512000            4099427000.0000           8006.693359     # 422.165160      11.189694
-     1024000            9117818300.0000           8904.119434     # 445.968929       8.799156
+           n                  t(n) (ns)              t(n)/n^1  t(n)/n*log(n)     t(n)/n^1.3
+         500               1723800.0000           3447.600000     384.528547     534.350070
+        1000               3840200.0000           3840.200000     385.338463     483.452537
+        2000               8744100.0000           4372.050000     398.699253     447.070611
+        4000              19531300.0000           4882.825000     # 408.065605     405.558177
+        8000              40872700.0000           5109.087500     394.043846     344.680207
+       16000              86741200.0000           5421.325000     388.186219     297.077287
+       32000             183427300.0000           5732.103125     383.013881     255.134390
+       64000             391561300.0000           6118.145312     383.203556     221.190156
+      128000             827385100.0000           6463.946094     380.998956     189.816838
+      256000            1804530700.0000           7048.948047     392.354040     168.132751
+      512000            3816257600.0000           7453.628125     393.003949     144.406497
+     1024000            8667457300.0000           8464.313770     # 423.940961     133.199246
 
 La complejidad de la función ordenación del vector en orden aleatorio es, aproximadamente y comprobado de forma empírica, de O(n*log(n)).
 En cuánto a las cotas, podemos observar de foma empírica como los valores de la subestimada tienden al infinito, los de la ajustada tienden 
-a un rango de valores entre 378 y 400 y los de la sobreestimada que tienden a 0. 
+a un rango de valores entre 380 y 400 y los de la sobreestimada que tienden a 0. 
 
 
 Para intentar evitar datos anómalos, ejecutamos el código en un entorno lo más limpio posible, con el menor número de procesos en segundo plano, 
@@ -326,9 +328,9 @@ Para cada algoritmo creamos varias cotas con el fin de averiguar su complejidad 
        - En orden aleatorio. Hallamos las cotas n^0.8, n^1 y n^1.2.
 
 - Ordenación de un vector.
-       - En orden ascendente. Hallamos las cotas n^1, n*log(n) y n^1.5.
-       - En orden descendente. Hallamos las cotas n^1, n*log(n) y n^1.5.
-       - En orden aleatorio. Hallamos las cotas n^1, n*log(n) y n^1.5.
+       - En orden ascendente. Hallamos las cotas n^1, n*log(n) y n^1.3.
+       - En orden descendente. Hallamos las cotas n^1, n*log(n) y n^1.3.
+       - En orden aleatorio. Hallamos las cotas n^1, n*log(n) y n^1.3.
 
 
 Para establecer la eficiencia de cada algoritmo de forma empírica, comparamos las cotas y los tiempos de ejecución resultantes de ambos algoritmos 
