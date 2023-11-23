@@ -38,11 +38,7 @@ def formatear_lista(lista, ancho):
 def matriz_distancias_minimas(M):
     # Llamar a la función Dijkstra con la matriz de adyacencia
     resultados = dijkstra(M)
-
-    # Imprimir los resultados
-    for fila in resultados:
-        print (formatear_lista(fila,5))
-
+    return resultados
 
 def printear_matrices(M):
     #para que se devuelva en la terminal como una matriz bien formateada
@@ -51,6 +47,30 @@ def printear_matrices(M):
         print(formatear_lista(M[i],5))
     print(" ")
 
+
+
+def printear_tablas(M):
+    n = len(M)
+    # Imprimir índices de las columnas (arriba)
+    print("    ", end="")
+    for i in range(n):
+        print(f"{i:<5}", end="")
+    print()
+    
+    # Agregar línea de separación entre índices y la matriz
+    print("   ", end="")
+    for i in range(n * 5 + 1):
+        print("-", end="")
+    print()
+
+    for i in range(n):
+        # Imprimir índice de la fila (a la izquierda)
+        print(f"\n{i:<3}|", end=" ")
+
+        # Imprimir valores de la matriz formateados
+        for j in range(n):
+            print(f"{M[i][j]:<5}", end="")
+        print()
 
 #______________________________________
 
@@ -100,5 +120,4 @@ def cotas_ajustadas(n, tiempo, exp1, exp2, exp3):   # Calcula las cotas
     # Devuelve una cadena formateada con las cotas y el tamaño del vector
     return f"{n:>10}\t\t{tiempo:>15.4f}       {cota_subestimada:>15.6f}{cota_ajustada:>15.6f}{cota_sobrestimada:>15.6f}"
 
-
-
+#______________________________________
