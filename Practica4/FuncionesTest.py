@@ -24,7 +24,7 @@ def test_matrices_minimas():
      print("Matriz del caso 1:")
      printear_matrices(matriz_caso_1)
      print("Calculamos la matriz de adyacencia de caminos de peso mínimo para la matriz del caso 1:")
-     matriz_distancias_minimas(matriz_caso_1)
+     printear_tablas(matriz_distancias_minimas(matriz_caso_1))
      print(" ")
 
      print("Matriz del caso 2:")
@@ -36,7 +36,7 @@ def test_matrices_minimas():
      a = matrizAleatoria(10)
      printear_matrices(a)
      print("Calculamos la matriz de adyacencia de caminos de peso mínimo para una matriz aleatoria:")
-     matriz_distancias_minimas(a)
+     printear_tablas(matriz_distancias_minimas(a))
     
 
 tamanos_n = [10, 20, 40, 80, 160, 320, 640]   # Lista con los tamaños del vector aleatorio, es una progresión geométrica de razón 2, si se quisiese se podría automatizar su creación también, en este caso no lo hacemos ya que con esos valores deberia ser suficiente para comprobar la complejidad algorítmica
