@@ -2,26 +2,28 @@
 from Algoritmos import *            #Importamos los algoritmos a probar
 import random
 
-
-
+# Función para generar una lista de longitud 'n' con valores aleatorios entre 1 y 1000
 def aleatorio(n):
-    l=list(range(n)) 
-    for i in l:     
-        l[i] = random.randint(1, 1000) 
-    return l                        # Devolver la lista con valores aleatorios
+    l = list(range(n))  # Crea una lista de 0 a n-1
+    for i in l:
+        l[i] = random.randint(1, 1000)  # Reemplaza cada elemento con un número aleatorio entre 1 y 1000
+    return l  # Devuelve la lista con valores aleatorios
 
-
+# Función para generar una matriz aleatoria simétrica de tamaño 'n x n'
 def matrizAleatoria(n):
-    m = []
+    m = []  # Inicializa una lista vacía que contendrá la matriz
     for i in range(n):
-        m.append(aleatorio(n))
+        m.append(aleatorio(n))  # Agrega 'n' listas aleatorias generadas por la función 'aleatorio' a la lista 'm'
+    
+    # Asegura que la matriz sea simétrica intercambiando valores entre filas y columnas
     for i in range(n):
-        for j in range(i+1):
-            if (i==j):
-                m[i][j]=0
+        for j in range(i + 1):  # Itera sobre los elementos hasta la diagonal principal
+            if i == j:
+                m[i][j] = 0  # Establece la diagonal principal como 0
             else:
-                m[i][j]=m[j][i]
-    return m
+                m[i][j] = m[j][i]  # Intercambia los valores para asegurar simetría
+    
+    return m  # Devuelve la matriz aleatoria simétrica 'n x n'
 
 
 def formatear_lista(lista, ancho):
@@ -43,6 +45,7 @@ def matriz_distancias_minimas(M):
 
 
 def printear_matrices(M):
+    #para que se devuelva en la terminal como una matriz bien formateada
     n = len(M)
     for i in range(n):
         print(formatear_lista(M[i],5))
@@ -97,4 +100,5 @@ def cotas_ajustadas(n, tiempo, exp1, exp2, exp3):   # Calcula las cotas
     # Devuelve una cadena formateada con las cotas y el tamaño del vector
     return f"{n:>10}\t\t{tiempo:>15.4f}       {cota_subestimada:>15.6f}{cota_ajustada:>15.6f}{cota_sobrestimada:>15.6f}"
 
-#______________________________________
+
+
