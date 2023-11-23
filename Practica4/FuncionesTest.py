@@ -1,7 +1,7 @@
 from Algoritmos import *            #Importamos los algoritmos a probar
 from FuncionesAuxiliares import *   #Importamos las funciones auxiliares necesarias para la ejecución de las pruebas
 
-
+#definición del primer caso de prueba
 matriz_caso_1 = [
      [0, 1, 8, 4, 7],
      [1, 0, 2, 6, 5],
@@ -9,7 +9,7 @@ matriz_caso_1 = [
      [4, 6, 9, 0, 3],
      [7, 5, 5, 3, 0]
         ]
-
+#definición del segundo caso de prueba
 matriz_caso_2 = [
      [0, 1, 4, 7],
      [1, 0, 2, 8],
@@ -19,6 +19,7 @@ matriz_caso_2 = [
 
 
 def test_matrices_minimas():
+     #se encarga de mostrar en la terminal los resultados del algoritmo dijkstra
      print("TEST 1")
      print("Matriz del caso 1:")
      printear_matrices(matriz_caso_1)
@@ -37,8 +38,7 @@ def test_matrices_minimas():
      print("Calculamos la matriz de adyacencia de caminos de peso mínimo para una matriz aleatoria:")
      matriz_distancias_minimas(a)
     
-#50,100,150,200,...1000
-#10, 20, 40, 80, 160, 320, 640
+
 tamanos_n = [10, 20, 40, 80, 160, 320, 640]   # Lista con los tamaños del vector aleatorio, es una progresión geométrica de razón 2, si se quisiese se podría automatizar su creación también, en este caso no lo hacemos ya que con esos valores deberia ser suficiente para comprobar la complejidad algorítmica
 umbral_confianza = 1000                                          # El tiempo en us (microsegundos) en el cual no nos podemos fiar de los valores obtenidos y habrá que realizar varias iteraciones y hacer el promedio de las mismas para asegurarnos de obtener valores correctos.
 repeticiones_umbral = 1000                                         # Número iteraciones una vez superado el umbral de tiempo
@@ -65,7 +65,7 @@ def test_tiempo_complejidad(exp1, exp2, exp3):
 #______________________________________________________________
 #Funciones que imprimen las tablas
 def imprimir_complejidad(exp1, exp2, exp3):
+    print(" ")
     print(f"{'Subestimada':>64}{'Ajustada':>12}{'Sobreestimada':>15}")
     print(f"{'n':>12}\t\t{'t(n) (ns)':>15}{'t(n)/n^'+str(exp1):>22}{'t(n)/n^'+str(exp2):>15}{'t(n)/n^'+str(exp3):>15}")
-
     test_tiempo_complejidad(exp1, exp2, exp3)
