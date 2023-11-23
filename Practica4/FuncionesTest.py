@@ -22,15 +22,16 @@ def test_matrices_minimas():
      print("TEST 1")
      print("Matriz del caso 1:")
      printear_matrices(matriz_caso_1)
-
      print("Calculamos la matriz de adyacencia de caminos de peso mínimo para la matriz del caso 1:")
      matriz_distancias_minimas(matriz_caso_1)
      print(" ")
+
      print("Matriz del caso 2:")
      printear_matrices(matriz_caso_2)
      print("Calculamos la matriz de adyacencia de caminos de peso mínimo para la matriz del caso 2:")
      matriz_distancias_minimas(matriz_caso_2)
-     print("Matriz aleatoria")
+
+     print("Matriz aleatoria:")
      a = matrizAleatoria(10)
      printear_matrices(a)
      print("Calculamos la matriz de adyacencia de caminos de peso mínimo para una matriz aleatoria:")
@@ -38,7 +39,7 @@ def test_matrices_minimas():
     
 #50,100,150,200,...1000
 #10, 20, 40, 80, 160, 320, 640
-tamanos_n = [2, 4, 8, 16, 32, 64, 128, 256, 512]   # Lista con los tamaños del vector aleatorio, es una progresión geométrica de razón 2, si se quisiese se podría automatizar su creación también, en este caso no lo hacemos ya que con esos valores deberia ser suficiente para comprobar la complejidad algorítmica
+tamanos_n = [10, 20, 40, 80, 160, 320, 640]   # Lista con los tamaños del vector aleatorio, es una progresión geométrica de razón 2, si se quisiese se podría automatizar su creación también, en este caso no lo hacemos ya que con esos valores deberia ser suficiente para comprobar la complejidad algorítmica
 umbral_confianza = 1000                                          # El tiempo en us (microsegundos) en el cual no nos podemos fiar de los valores obtenidos y habrá que realizar varias iteraciones y hacer el promedio de las mismas para asegurarnos de obtener valores correctos.
 repeticiones_umbral = 1000                                         # Número iteraciones una vez superado el umbral de tiempo
 #Función complejidad
@@ -60,3 +61,11 @@ def test_tiempo_complejidad(exp1, exp2, exp3):
 
          else:
              print(" ",cotas_ajustadas(n, tiempo_ejecucion, exp1, exp2, exp3))    # Imprimimos el tiempo de ejecución normal
+
+#______________________________________________________________
+#Funciones que imprimen las tablas
+def imprimir_complejidad(exp1, exp2, exp3):
+    print(f"{'Subestimada':>64}{'Ajustada':>12}{'Sobreestimada':>15}")
+    print(f"{'n':>12}\t\t{'t(n) (ns)':>15}{'t(n)/n^'+str(exp1):>22}{'t(n)/n^'+str(exp2):>15}{'t(n)/n^'+str(exp3):>15}")
+
+    test_tiempo_complejidad(exp1, exp2, exp3)
