@@ -30,7 +30,7 @@ def test_matrices_minimas():
      print("Matriz del caso 2:")
      printear_matrices(matriz_caso_2)
      print("Calculamos la matriz de adyacencia de caminos de peso mínimo para la matriz del caso 2:")
-     matriz_distancias_minimas(matriz_caso_2)
+     printear_tablas(matriz_distancias_minimas(matriz_caso_2))
 
      print("Matriz aleatoria:")
      a = matrizAleatoria(10)
