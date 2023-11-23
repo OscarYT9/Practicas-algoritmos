@@ -1,0 +1,185 @@
+Óscar Vilela Rodríguez y Ainhoa de Diego Silva 
+oscar.vilela.rodriguez@udc.es; ainhoa.dediego.silva@udc.es
+
+INTRODUCCIÓN
+
+En esta cuarta práctica analizamos y demostramos de manera empírica la fiabilidad, tiempo de ejecución, y 
+complejidad del algoritmo de Dijkstra propuesto, que realiza la busqueda del camino minimo (más corto, de modo que la suma de los pesos de las aristas sea la menor) entre los nodos de un grafo completo, no dirigído y ponderado
+donde el peso de cada arista se inizializa de forma aleatoria, tomando valores de [1...1000] 
+
+Esta función requiere como variable de entrada la matriz de adyacencia del grafo, que es la que nos proporciona todos los pesos de las aristas existentes.
+Para ello fué necesario la creación de la función matrizAleatoria(), que es la que se usa para crear la matriz que representará el grafo,
+es decir, la matriz de adyacencia donde se encontrarán los pesos [1...1000], excepto la diagonal principal, ya que el grafo es simple (sin aristas múltiples, ni lazos)
+Para ello, creamos un programa en Python, compuesto de varios archivos de código: 
+
+Algoritmos.py 
+FuncionesTests.py 
+FuncionesAuxiliares.py 
+Main.py
+
+ACLARACIONES INICIALES
+
+Para ejecutar el código debes moverte al directorio y escribir en la terminal python main.py.
+
+Las características de la máquina que usamos se muestran a continuación: 
+
+Nombre del modelo: Microsoft Surface Laptop Go 2 
+Procesador 11th Gen Intel(R) Core(TM) i5-1135G7 @2.40 GHz, 2419 MHz (4 procesadores principales, 8 procesadores lógicos)
+Memoria RAM  8 GB de RAM LPDDR4x
+Almacenamiento 256 GB SSD
+Python 3.9.13
+
+*Este programa en específico se ejecutó en el procesador (CPU) por lo que la tarjeta gráfica (GPU) no es necesaria para su ejecución. 
+*Todas las medidas de tiempo han sido tomadas en nanosegundos (ns), mediante la función time.perf_counter_ns(), y 
+ mostradas por pantalla a su vez en nanosegundos. 
+
+*Todas las funciones aquí comentadas están descritas en mayor profundidad en el código. 
+
+
+Una vez aclaradas las cuestiones básicas, explicaremos paso a paso, el proceso que nos llevó a las conclusiones finales de este informe.
+
+
+DESARRROLLO DE LAS PRUEBAS
+
+
+
+1º Creamos el archivo Algoritmos.py en el que definimos la función dijkstra.
+
+
+
+2º Comprobamos el correcto funcionamiento del algoritmo y la complejidad algorítmica de forma empírica:
+Para ello creamos el archivo FuncionesTests.py, que a su vez utiliza otras funciones definidas en FuncionesAuxiliares.py, donde definimos las funciones “test”: 
+
+TEST 1
+Matriz del caso 1:
+[    0,     1,     8,     4,     7]
+[    1,     0,     2,     6,     5]
+[    8,     2,     0,     9,     5]
+[    4,     6,     9,     0,     3]
+[    7,     5,     5,     3,     0]
+
+Calculamos la matriz de adyacencia de caminos de peso mínimo para la matriz del caso 1:
+    0    1    2    3    4
+   --------------------------
+
+0  | 0    1    3    4    6
+
+1  | 1    0    2    5    5
+
+2  | 3    2    0    7    5
+
+3  | 4    5    7    0    3
+
+4  | 6    5    5    3    0
+
+Matriz del caso 2:
+[    0,     1,     4,     7]
+[    1,     0,     2,     8]
+[    4,     2,     0,     3]
+[    7,     8,     3,     0]
+
+Calculamos la matriz de adyacencia de caminos de peso mínimo para la matriz del caso 2:
+    0    1    2    3
+   ---------------------
+
+0  | 0    1    3    6
+
+1  | 1    0    2    5
+
+2  | 3    2    0    3
+
+3  | 6    5    3    0
+Matriz aleatoria:
+[    0,   933,   676,   816,   365,   895,   379,   138,   160,   593]
+[  933,     0,   322,   214,   653,   840,    56,    50,   135,   726]
+[  676,   322,     0,   371,   850,   400,   564,   926,   877,   259]
+[  816,   214,   371,     0,   930,   337,    89,   621,   793,   304]
+[  365,   653,   850,   930,     0,   476,     9,   824,   324,   124]
+[  895,   840,   400,   337,   476,     0,   141,   634,   349,   348]
+[  379,    56,   564,    89,     9,   141,     0,   352,   795,   837]
+[  138,    50,   926,   621,   824,   634,   352,     0,   791,   307]
+[  160,   135,   877,   793,   324,   349,   795,   791,     0,   997]
+[  593,   726,   259,   304,   124,   348,   837,   307,   997,     0]
+
+Calculamos la matriz de adyacencia de caminos de peso mínimo para una matriz aleatoria:
+    0    1    2    3    4    5    6    7    8    9
+   ---------------------------------------------------
+
+0  | 0    188  510  333  253  385  244  138  160  377
+
+1  | 188  0    322  145  65   197  56   50   135  189
+
+2  | 510  322  0    371  383  400  378  372  457  259
+
+3  | 333  145  371  0    98   230  89   195  280  222
+
+4  | 253  65   383  98   0    150  9    115  200  124
+
+5  | 385  197  400  230  150  0    141  247  332  274
+
+6  | 244  56   378  89   9    141  0    106  191  133
+
+7  | 138  50   372  195  115  247  106  0    185  239
+
+8  | 160  135  457  280  200  332  191  185  0    324
+
+9  | 377  189  259  222  124  274  133  239  324  0
+
+3º Para comprobar el tiempo de ejecución del algoritmo, creamos una función 
+def test_tiempo_complejidad(alg, orden, exp1, exp2, exp3) que calcula
+el tiempo y nos permite medir la complejidad de manera empírica gracias a las cotas.
+
+                                                   Subestimada    Ajustada        Sobreestimada
+           n                  t(n) (ns)            t(n)/n^2.8     t(n)/n^2.95     t(n)/n^3.1
+*         10                154271.7000            244.504167   # 173.095694      122.542367 (promedio de 1000 repeticiones)
+*         20               1027386.3000            233.802840     149.174738      95.178922  (promedio de 1000 repeticiones)
+          40               7731500.0000            252.636319     145.273629      83.536791
+          80              59824700.0000            280.691050     145.467196      75.387887
+         160             433063500.0000            291.753201     136.269177      63.647249
+         320            3434619500.0000            332.245182     139.857640      58.872665
+         640           28045988900.0000            389.553249     147.788225      56.067713
+
+                                                   Subestimada    Ajustada        Sobreestimada
+           n                  t(n) (ns)            t(n)/n^2.8     t(n)/n^2.95     t(n)/n^3.1
+*         10                148394.1000            235.188799   # 166.500919      117.873623 (promedio de 1000 repeticiones)
+*         20               1022226.7000            232.628667     148.425573      94.700928  (promedio de 1000 repeticiones)
+          40               6654100.0000            217.430942   # 125.029458      71.895772
+          80              55435300.0000            260.096458     134.794118      69.856600
+         160             414288700.0000            279.104691     130.361437      60.887920
+         320            3353290100.0000            324.377847     136.545908      57.478602
+         640           27481901700.0000            381.718189     144.815770      54.940026
+
+Cota subestimada. 2.8. El tiempo de ejecución entre la cota tiende a infinito.
+Cota ajustada. 2.95. El tiempo de ejecución entre la cota tiende a una constante aproximada a un rango de valores [135, 145].
+Cota sobreestimada. 3.1. El tiempo de ejecución entre la cota tiende a 0.
+
+Teoricámente la complejidad del algoritmo dijkstra sería O(n^3) pero difiere con la comprobación empírica:
+                                                   Subestimada    Ajustada        Sobreestimada
+           n                  t(n) (ns)            t(n)/n^2.8     t(n)/n^3        t(n)/n^3.1
+*         10                153183.9000            242.780120     153.183900      121.678297 (promedio de 1000 repeticiones)
+*         20               1017382.5000            231.526270     127.172813      94.252152  (promedio de 1000 repeticiones)
+          40               7118100.0000            232.592716     111.220313      76.909168
+          80              60181700.0000            282.366056     117.542383      75.837759
+         160             405663000.0000            273.293591     99.038818       59.620203
+         320            3376884000.0000            326.660185     103.054321      57.883024
+         640           27760805700.0000            385.592110     105.899070      55.497593
+
+Utilizamos un vector de progresión geométrica 2 porque nos ayuda a visualizar hacia qué valor de tiempo tiende el algoritmo.
+Los asteriscos en las tablas de datos simbolizan que esos valores están por debajo del umbral de confianza, por lo que utilizamos 
+el método del promedio para tener una medida más precisa.
+
+Para intentar evitar datos anómalos, ejecutamos el código en un entorno lo más limpio posible, con el menor número de procesos en 
+segundo plano, con un número de iteraciones totales de 10.
+
+Para indicar los datos anómalos, los marcamos en las tablas de los tiempos de ejecución con el símbolo "#".
+
+CONCLUSIONES
+ 
+Para el algoritmo dijkstra suponemos las cotas subestimada, ajustada y sobreestimada con el fin de averiguar su complejidad
+de manera empírica.
+
+Para suponer la complejidad del algoritmo de forma empírica, comparamos las cotas y los tiempos de ejecución resultantes, dando 
+como complejidad resultante sería O(n^2.95), la cuál difiere de forma escasa con la complejida teórica (O(n^3)). 
+
+Por tanto, concluímos que la complejidad aproximada del algoritmo dijkstra sería O(n^3).
+
